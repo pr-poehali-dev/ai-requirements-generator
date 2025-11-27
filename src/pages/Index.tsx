@@ -121,48 +121,69 @@ const Index = () => {
           ))}
         </div>
 
-        <Card className="mb-20 bg-gradient-to-br from-card via-card to-primary/5 border-primary/30 animate-fade-in">
-          <CardHeader>
-            <CardTitle className="text-3xl flex items-center gap-3">
-              <Icon name="Wand2" size={32} className="text-primary" />
-              Генератор требований
-            </CardTitle>
-            <CardDescription className="text-lg">
-              Опишите задачу на естественном языке — получите готовые User Stories
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Textarea 
-              placeholder="Например: Нужна система авторизации пользователей с двухфакторной аутентификацией..."
-              className="min-h-[120px] bg-background/50 border-primary/20 focus:border-primary/50 text-lg"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-            />
-            <div className="flex gap-3">
-              <Button 
-                onClick={handleGenerate}
-                disabled={!prompt || isGenerating}
-                className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white"
-              >
-                {isGenerating ? (
-                  <>
-                    <Icon name="Loader2" size={18} className="mr-2 animate-spin" />
-                    Генерация...
-                  </>
-                ) : (
-                  <>
-                    <Icon name="Sparkles" size={18} className="mr-2" />
-                    Сгенерировать
-                  </>
-                )}
-              </Button>
-              <Button variant="outline" disabled={!prompt}>
-                <Icon name="FileText" size={18} className="mr-2" />
-                Экспорт в Jira
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="grid lg:grid-cols-2 gap-8 mb-20">
+          <Card className="bg-gradient-to-br from-card via-card to-primary/5 border-primary/30 animate-fade-in">
+            <CardHeader>
+              <CardTitle className="text-3xl flex items-center gap-3">
+                <Icon name="Wand2" size={32} className="text-primary" />
+                Генератор требований
+              </CardTitle>
+              <CardDescription className="text-lg">
+                Опишите задачу на естественном языке — получите готовые User Stories
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Textarea 
+                placeholder="Например: Нужна система авторизации пользователей с двухфакторной аутентификацией..."
+                className="min-h-[120px] bg-background/50 border-primary/20 focus:border-primary/50 text-lg"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+              />
+              <div className="flex gap-3">
+                <Button 
+                  onClick={handleGenerate}
+                  disabled={!prompt || isGenerating}
+                  className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white"
+                >
+                  {isGenerating ? (
+                    <>
+                      <Icon name="Loader2" size={18} className="mr-2 animate-spin" />
+                      Генерация...
+                    </>
+                  ) : (
+                    <>
+                      <Icon name="Sparkles" size={18} className="mr-2" />
+                      Сгенерировать
+                    </>
+                  )}
+                </Button>
+                <Button variant="outline" disabled={!prompt}>
+                  <Icon name="FileText" size={18} className="mr-2" />
+                  Экспорт в Jira
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card/50 backdrop-blur border-primary/20 animate-fade-in">
+            <CardHeader>
+              <CardTitle className="text-2xl flex items-center gap-2">
+                <Icon name="Image" size={24} className="text-accent" />
+                Пример генерации
+              </CardTitle>
+              <CardDescription>
+                Автоматическое создание User Story с кнопками для модификации требований
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <img 
+                src="https://cdn.poehali.dev/files/471d3f12-d02d-40a8-823c-eca4acc3082c.png"
+                alt="Пример User Story с кнопками модификации"
+                className="w-full rounded-lg border border-primary/20 hover:border-primary/40 transition-all"
+              />
+            </CardContent>
+          </Card>
+        </div>
 
         <div className="mb-12">
           <div className="text-center mb-12">
