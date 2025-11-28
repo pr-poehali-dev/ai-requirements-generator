@@ -1,253 +1,120 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Textarea } from "@/components/ui/textarea";
 import Icon from "@/components/ui/icon";
-import { useState } from "react";
 
 const Index = () => {
-  const [prompt, setPrompt] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-
-  const handleGenerate = () => {
-    setIsGenerating(true);
-    setTimeout(() => setIsGenerating(false), 2000);
-  };
-
-  const examples = [
+  const companies = [
     {
-      company: "ATLASSIAN",
-      title: "AI Requirements Copilot",
-      description: "ИИ-ассистент для написания БТ, User Stories и Use Cases. Интегрирован с Jira, Confluence, 1С, SAP.",
-      tags: ["Jira", "Confluence", "Госсектор"],
-      link: "https://marketplace.atlassian.com/apps/1234191",
-      gradient: "from-blue-500/20 to-cyan-500/20"
+      name: "Сбер",
+      industry: "Банк",
+      help: "Автоматизация сбора и визуализации KPI, генерация отчётов по BABOK-процессам (например, \"Анализ требований\", \"Оценка решений\"), предиктивная аналитика для прогнозирования поведения клиентов.",
+      searchUrl: "https://www.google.com/search?q=Сбер+ИИ+бизнес-аналитика+2022+официальный+сайт",
+      gradient: "from-cyan-500/30 via-blue-500/20 to-purple-500/30"
     },
     {
-      company: "СБЕР",
-      title: "Генератор Требований",
-      description: "ИИ-ассистент для БА с генерацией User Stories, критериев приемки и автозаполнением шаблонов БТ.",
-      tags: ["User Stories", "Confluence", "КИС"],
-      link: "https://sberbs.ru/page/ai",
-      gradient: "from-green-500/20 to-emerald-500/20"
+      name: "ВТБ",
+      industry: "Банк",
+      help: "Автоматизация ETL-процессов, генерация гипотез по данным, поддержка принятия решений по BABOK-доменам \"Стратегическое планирование\", \"Управление требованиями\".",
+      searchUrl: "https://www.google.com/search?q=ВТБ+ИИ+платформа+бизнес-аналитика+2022+пресс-релиз",
+      gradient: "from-blue-500/30 via-cyan-500/20 to-teal-500/30"
     },
     {
-      company: "Т-БАНК",
-      title: "AI Requirements Assistant",
-      description: "Генерация требований на основе устного описания. Создание карточек в Jira с уточняющими вопросами.",
-      tags: ["Jira", "Voice-to-Text", "Автоматизация"],
-      link: "https://ai.tbank.ru/",
-      gradient: "from-yellow-500/20 to-orange-500/20"
+      name: "Газпром нефть",
+      industry: "Энергетика",
+      help: "Автоматизация анализа операционных данных, поддержка BABOK-процессов \"Анализ данных\", \"Оценка решений\", \"Управление изменениями\".",
+      searchUrl: "https://www.google.com/search?q=Газпром+нефть+ИИ+бизнес-аналитика+2023+официальный+сайт",
+      gradient: "from-purple-500/30 via-pink-500/20 to-fuchsia-500/30"
     },
     {
-      company: "ЯНДЕКС",
-      title: "Yandex AI Requirements",
-      description: "Генерация БТ и Use Cases на базе YandexGPT с интеграцией в Yandex Cloud и DataLens.",
-      tags: ["YandexGPT", "Cloud", "DataLens"],
-      link: "https://cloud.yandex.ru/",
-      gradient: "from-red-500/20 to-pink-500/20"
-    }
-  ];
-
-  const features = [
-    {
-      icon: "Sparkles",
-      title: "Генерация User Stories",
-      description: "ИИ создаёт детальные User Stories с критериями приемки за секунды"
+      name: "МТС",
+      industry: "Телеком / IT",
+      help: "Автоматизация отчётности, предиктивный анализ клиентского поведения, поддержка BABOK-процессов \"Анализ требований\", \"Моделирование процессов\".",
+      searchUrl: "https://www.google.com/search?q=МТС+ИИ+для+бизнес-аналитиков+2022+пресс-релиз",
+      gradient: "from-pink-500/30 via-rose-500/20 to-red-500/30"
     },
     {
-      icon: "FileCheck",
-      title: "Проверка требований",
-      description: "Автоматическая проверка БТ на полноту и соответствие стандартам"
+      name: "Яндекс",
+      industry: "IT / Технологии",
+      help: "Автоматизация визуализации данных, генерация рекомендаций по улучшению бизнес-процессов, поддержка BABOK-доменов \"Анализ требований\", \"Оценка решений\", \"Управление требованиями\".",
+      searchUrl: "https://www.google.com/search?q=Яндекс+ИИ+для+бизнес-аналитиков+2021+официальный+сайт",
+      gradient: "from-cyan-500/30 via-blue-500/20 to-indigo-500/30"
     },
     {
-      icon: "Workflow",
-      title: "Интеграция с Jira",
-      description: "Прямая синхронизация с Jira, Confluence и другими системами"
+      name: "Альфа-Банк",
+      industry: "Банк",
+      help: "Автоматизация сбора и анализа данных по клиентам, поддержка BABOK-процессов \"Анализ данных\", \"Оценка решений\", \"Управление изменениями\".",
+      searchUrl: "https://www.google.com/search?q=Альфа-Банк+ИИ+бизнес-аналитика+2022+официальный+сайт",
+      gradient: "from-yellow-500/30 via-orange-500/20 to-amber-500/30"
     },
     {
-      icon: "Zap",
-      title: "Мгновенная генерация",
-      description: "От идеи до готовых требований — менее 30 секунд"
+      name: "Ростелеком",
+      industry: "Телеком / IT",
+      help: "Автоматизация отчётности, предиктивный анализ, поддержка BABOK-процессов \"Анализ требований\", \"Моделирование процессов\", \"Оценка решений\".",
+      searchUrl: "https://www.google.com/search?q=Ростелеком+ИИ+бизнес-аналитика+2022+пресс-релиз",
+      gradient: "from-indigo-500/30 via-purple-500/20 to-violet-500/30"
+    },
+    {
+      name: "Лукойл",
+      industry: "Энергетика",
+      help: "Автоматизация анализа операционных данных, поддержка BABOK-процессов \"Анализ данных\", \"Оценка решений\", \"Управление изменениями\".",
+      searchUrl: "https://www.google.com/search?q=Лукойл+ИИ+бизнес-аналитика+2023+официальный+сайт",
+      gradient: "from-teal-500/30 via-emerald-500/20 to-green-500/30"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
-      <div className="container mx-auto px-4 py-8 md:py-16">
-        <div className="text-center mb-16 animate-fade-in">
-          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-            <Icon name="Bot" size={20} className="text-primary" />
-            <span className="text-sm font-medium text-primary">Powered by AI</span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-slide-up">
-            ИИ-Ассистент для БА
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            Автоматизация генерации требований, User Stories и Use Cases с помощью искусственного интеллекта
-          </p>
+    <div className="min-h-screen bg-[#0a0a12]">
+      <div className="container mx-auto px-4 py-8 md:py-12">
+        <h1 className="text-4xl md:text-6xl font-bold text-center mb-12 text-cyan-400 animate-fade-in" style={{ textShadow: '0 0 20px rgba(0, 255, 255, 0.5)' }}>
+          🤖 ИИ в процессе работы БА
+        </h1>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-12 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-lg px-8 py-6 animate-glow">
-              <Icon name="Rocket" size={20} className="mr-2" />
-              Попробовать бесплатно
-            </Button>
-            <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/5 text-lg px-8 py-6">
-              <Icon name="Play" size={20} className="mr-2" />
-              Смотреть демо
-            </Button>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {features.map((feature, idx) => (
-            <Card 
-              key={idx} 
-              className="bg-card/50 backdrop-blur border-primary/20 hover:border-primary/40 transition-all hover:scale-105 animate-scale-in"
-              style={{ animationDelay: `${idx * 0.1}s` }}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {companies.map((company, idx) => (
+            <Card
+              key={idx}
+              className={`relative bg-[#121220] border-2 border-blue-500 hover:border-purple-500 transition-all hover:-translate-y-2 animate-scale-in overflow-hidden`}
+              style={{
+                animationDelay: `${idx * 0.1}s`,
+                boxShadow: '0 0 15px rgba(0, 255, 255, 0.3)'
+              }}
             >
+              <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${company.gradient}`} />
+              
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
-                  <Icon name={feature.icon} size={24} className="text-white" />
-                </div>
-                <CardTitle className="text-xl">{feature.title}</CardTitle>
+                <CardTitle className="text-2xl text-cyan-400 mb-2" style={{ textShadow: '0 0 10px rgba(0, 255, 255, 0.5)' }}>
+                  {company.name}
+                </CardTitle>
+                <Badge className="bg-purple-500/30 text-purple-300 border-purple-500/50 w-fit">
+                  {company.industry}
+                </Badge>
               </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{feature.description}</p>
+
+              <CardContent className="space-y-4">
+                <div className="bg-black/30 border-l-4 border-pink-500 rounded-lg p-4">
+                  <p className="text-sm font-semibold text-white mb-2">Как помогает:</p>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    {company.help}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-white/10">
+                  <a
+                    href={company.searchUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-cyan-400 hover:text-pink-400 transition-colors group"
+                    style={{ textShadow: '0 0 5px rgba(0, 255, 255, 0.3)' }}
+                  >
+                    <Icon name="Search" size={16} className="group-hover:animate-pulse" />
+                    <span className="group-hover:underline">Найти информацию</span>
+                    <Icon name="ExternalLink" size={14} className="ml-auto" />
+                  </a>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
-
-        <div className="grid lg:grid-cols-2 gap-8 mb-20">
-          <Card className="bg-gradient-to-br from-card via-card to-primary/5 border-primary/30 animate-fade-in">
-            <CardHeader>
-              <CardTitle className="text-3xl flex items-center gap-3">
-                <Icon name="Wand2" size={32} className="text-primary" />
-                Генератор требований
-              </CardTitle>
-              <CardDescription className="text-lg">
-                Опишите задачу на естественном языке — получите готовые User Stories
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <Textarea 
-                placeholder="Например: Нужна система авторизации пользователей с двухфакторной аутентификацией..."
-                className="min-h-[120px] bg-background/50 border-primary/20 focus:border-primary/50 text-lg"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-              />
-              <div className="flex gap-3">
-                <Button 
-                  onClick={handleGenerate}
-                  disabled={!prompt || isGenerating}
-                  className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white"
-                >
-                  {isGenerating ? (
-                    <>
-                      <Icon name="Loader2" size={18} className="mr-2 animate-spin" />
-                      Генерация...
-                    </>
-                  ) : (
-                    <>
-                      <Icon name="Sparkles" size={18} className="mr-2" />
-                      Сгенерировать
-                    </>
-                  )}
-                </Button>
-                <Button variant="outline" disabled={!prompt}>
-                  <Icon name="FileText" size={18} className="mr-2" />
-                  Экспорт в Jira
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card/50 backdrop-blur border-primary/20 animate-fade-in">
-            <CardHeader>
-              <CardTitle className="text-2xl flex items-center gap-2">
-                <Icon name="Image" size={24} className="text-accent" />
-                Пример генерации
-              </CardTitle>
-              <CardDescription>
-                Автоматическое создание User Story с кнопками для модификации требований
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <img 
-                src="https://cdn.poehali.dev/files/471d3f12-d02d-40a8-823c-eca4acc3082c.png"
-                alt="Пример User Story с кнопками модификации"
-                className="w-full rounded-lg border border-primary/20 hover:border-primary/40 transition-all"
-              />
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="mb-12">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Примеры ИИ-БА
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Ведущие компании уже используют ИИ для автоматизации требований
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {examples.map((example, idx) => (
-              <Card 
-                key={idx}
-                className={`bg-gradient-to-br ${example.gradient} backdrop-blur border-primary/20 hover:border-primary/40 transition-all hover:scale-[1.02] animate-scale-in`}
-                style={{ animationDelay: `${idx * 0.1}s` }}
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <Badge variant="outline" className="text-sm font-bold border-primary/40">
-                      {example.company}
-                    </Badge>
-                    <Icon name="ExternalLink" size={18} className="text-muted-foreground" />
-                  </div>
-                  <CardTitle className="text-2xl">{example.title}</CardTitle>
-                  <CardDescription className="text-base text-foreground/80">
-                    {example.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {example.tags.map((tag, tagIdx) => (
-                      <Badge key={tagIdx} variant="secondary" className="bg-primary/20 text-primary-foreground">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <Button 
-                    variant="ghost" 
-                    className="w-full justify-between group hover:bg-primary/10"
-                    onClick={() => window.open(example.link, '_blank')}
-                  >
-                    Подробнее
-                    <Icon name="ArrowRight" size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        <Card className="bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 border-primary/30 animate-fade-in">
-          <CardContent className="text-center py-12">
-            <h3 className="text-3xl font-bold mb-4">Готовы автоматизировать свою работу?</h3>
-            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Присоединяйтесь к тысячам бизнес-аналитиков, которые уже используют ИИ для повышения продуктивности
-            </p>
-            <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-lg px-8 py-6">
-              <Icon name="Rocket" size={20} className="mr-2" />
-              Начать работу
-            </Button>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
