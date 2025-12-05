@@ -119,7 +119,7 @@ const Index = () => {
             <div className="mb-6">
               <p className="font-bold mb-3 text-gray-800 text-xl">Топ-3 самых полезных пространства:</p>
               <ul className="list-none space-y-2 ml-4">
-                <li className="text-gray-800 text-lg">✅ Проведение и документирование встреч — 71,4%</li>
+                <li className="text-gray-800 text-lg">✅ Проведение и документирование встреч — 51,4%</li>
                 <li className="text-gray-800 text-lg">✅ Генерация бизнес-требований — 71,4%</li>
                 <li className="text-gray-800 text-lg">✅ Генерация критериев приёмки — 71,4%</li>
               </ul>
@@ -139,7 +139,7 @@ const Index = () => {
               <p className="mb-2 text-gray-800 text-lg">— Улучшить стабильность и интеграцию с файлами</p>
               <p className="mb-2 text-gray-800 text-lg">— Добавить редактирование промтов прямо в интерфейсе</p>
               <p className="mb-2 text-gray-800 text-lg">— Популяризировать малоиспользуемые, но полезные пространства (например, проверка БТ)</p>
-              <p className="text-gray-800 text-lg">— Интегрировать анализ задач Pyrus</p>
+              <p className="text-gray-800 text-lg">— Доработать функционал по анализу задач Pyrus, чтобы пользователям было удобно им пользоваться и интуитивно понятно</p>
             </div>
           </CardContent>
         </Card>
@@ -158,11 +158,23 @@ const Index = () => {
                 </div>
               </CardHeader>
               <CardContent className="p-6">
-                <div className={`bg-gradient-to-br ${space.gradient} bg-opacity-10 rounded-xl p-5 mb-5 border border-gray-200`}>
-                  <p className="mb-2 text-gray-800 text-base"><strong>Использовали:</strong> {space.used}</p>
-                  <p className="mb-2 text-gray-800 text-base"><strong>Частота:</strong> {space.frequency}</p>
-                  <p className="mb-2 text-gray-800 text-base"><strong>Полезность (1–5):</strong> {space.usefulness}</p>
-                  <p className="text-gray-800 text-base"><strong>Корректность ИИ:</strong> {space.correctness}</p>
+                <div className="grid grid-cols-2 gap-3 mb-5">
+                  <div className={`bg-gradient-to-br ${space.gradient} bg-opacity-10 rounded-lg p-4 border border-gray-200`}>
+                    <p className="text-xs text-gray-600 uppercase font-semibold mb-1">Использовали</p>
+                    <p className="text-gray-800 text-lg font-bold">{space.used}</p>
+                  </div>
+                  <div className={`bg-gradient-to-br ${space.gradient} bg-opacity-10 rounded-lg p-4 border border-gray-200`}>
+                    <p className="text-xs text-gray-600 uppercase font-semibold mb-1">Частота в неделю</p>
+                    <p className="text-gray-800 text-sm font-semibold">{space.frequency}</p>
+                  </div>
+                  <div className={`bg-gradient-to-br ${space.gradient} bg-opacity-10 rounded-lg p-4 border border-gray-200`}>
+                    <p className="text-xs text-gray-600 uppercase font-semibold mb-1">Полезность (1–5)</p>
+                    <p className="text-gray-800 text-sm font-semibold">{space.usefulness}</p>
+                  </div>
+                  <div className={`bg-gradient-to-br ${space.gradient} bg-opacity-10 rounded-lg p-4 border border-gray-200`}>
+                    <p className="text-xs text-gray-600 uppercase font-semibold mb-1">Корректность ИИ</p>
+                    <p className="text-gray-800 text-sm font-semibold">{space.correctness}</p>
+                  </div>
                 </div>
 
                 {space.comments.length > 0 && (
