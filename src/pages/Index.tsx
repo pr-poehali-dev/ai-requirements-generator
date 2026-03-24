@@ -267,7 +267,12 @@ const HrAgent = () => {
             <div style={s.statsGrid}>
               <div style={s.statBox}><span style={s.statValue}>34 484</span><span style={s.statLabel}>Человеко-часов без ИИ<br />(в год на сотрудников HR СГ)</span></div>
               <div style={s.statBox}><span style={s.statValue}>18 184</span><span style={s.statLabel}>Человеко-часов с ИИ<br />(в год на сотрудников HR СГ)</span></div>
-              <div style={s.statBoxGreen}><span style={s.statValueGreen}>16 300</span><span style={s.statLabel}>Сокращение ч.ч. в год<br />Экономия: 12 225 000 ₽</span></div>
+              <div style={s.statBoxGreen}>
+                <span style={s.statValueGreen}>16 300</span>
+                <span style={s.statLabel}>Сокращение ч.ч. в год</span>
+                <span style={{ fontSize: "1.9rem", fontWeight: 700, color: "#1b5e20", display: "block", marginTop: 6 }}>12 225 000 ₽</span>
+                <span style={{ fontSize: "0.85rem", color: "#2e7d32" }}>Экономия в год</span>
+              </div>
             </div>
           </div>
           <div style={{ background: "linear-gradient(135deg, #0056b3, #007bff)", color: "#fff", padding: 28, borderRadius: 14, marginBottom: 16, boxShadow: "0 6px 24px rgba(0,86,179,0.2)" }}>
