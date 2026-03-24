@@ -6,40 +6,110 @@ type HrTabId = "overview" | "table" | "methodology";
 type TwinTabId = "overview" | "table" | "sources";
 type UnderwriterTabId = "overview" | "processes" | "methodology" | "formulas";
 
+const BG_PATTERN = "https://cdn.poehali.dev/projects/42e938e2-bf61-4164-bb36-13a93dc5e216/bucket/f8f3d329-144d-47c1-84ec-d874d3dc9b48.png";
+const CHAR_IMG = "https://cdn.poehali.dev/projects/42e938e2-bf61-4164-bb36-13a93dc5e216/bucket/53f750eb-fffd-41c5-912c-73091fc1e730.png";
+
 const s: Record<string, React.CSSProperties> = {
-  body: { background: "#f5f7fa", minHeight: "100vh", padding: "20px", fontFamily: "Segoe UI, sans-serif", color: "#2c3e50" },
-  container: { maxWidth: 1200, margin: "0 auto" },
-  header: { textAlign: "center", padding: "24px 20px", background: "#1a237e", color: "#fff", borderRadius: 12, marginBottom: 24 },
-  h1: { fontSize: "1.7rem", marginBottom: 8 },
+  body: {
+    minHeight: "100vh",
+    padding: "20px",
+    fontFamily: "'Segoe UI', sans-serif",
+    color: "#1a1a2e",
+    position: "relative",
+    backgroundImage: `url(${BG_PATTERN})`,
+    backgroundSize: "400px 400px",
+    backgroundRepeat: "repeat",
+    backgroundColor: "#1a3a6e",
+  },
+  bodyOverlay: {
+    position: "fixed",
+    inset: 0,
+    background: "linear-gradient(135deg, rgba(255,240,235,0.55) 0%, rgba(180,210,255,0.45) 50%, rgba(255,240,235,0.55) 100%)",
+    pointerEvents: "none",
+    zIndex: 0,
+  },
+  character: {
+    position: "fixed",
+    right: 0,
+    bottom: 0,
+    width: 320,
+    opacity: 0.22,
+    pointerEvents: "none",
+    zIndex: 1,
+    filter: "drop-shadow(0 0 40px rgba(26,35,126,0.3))",
+  },
+  container: { maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 },
+  header: {
+    textAlign: "center",
+    padding: "28px 24px",
+    background: "rgba(15,25,80,0.82)",
+    color: "#fff",
+    borderRadius: 16,
+    marginBottom: 24,
+    backdropFilter: "blur(8px)",
+    border: "1px solid rgba(255,255,255,0.15)",
+    boxShadow: "0 4px 32px rgba(10,20,80,0.25)",
+  },
+  h1: { fontSize: "1.7rem", marginBottom: 8, letterSpacing: "0.03em" },
   subtitle: { fontSize: "0.95rem", opacity: 0.85, lineHeight: 1.5 },
   agentRow: { display: "flex", gap: 10, marginBottom: 6, flexWrap: "wrap" },
-  agentBtn: (active: boolean): React.CSSProperties => ({ padding: "12px 28px", border: "none", borderRadius: 8, background: active ? "#7c4dff" : "#3949ab", color: "#fff", cursor: "pointer", fontSize: "1rem", fontWeight: 700, transition: "background 0.2s" }),
+  agentBtn: (active: boolean): React.CSSProperties => ({
+    padding: "12px 28px",
+    border: active ? "2px solid rgba(255,255,255,0.6)" : "2px solid rgba(255,255,255,0.2)",
+    borderRadius: 10,
+    background: active ? "rgba(80,40,180,0.88)" : "rgba(20,30,100,0.7)",
+    color: "#fff",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontWeight: 700,
+    backdropFilter: "blur(6px)",
+    transition: "all 0.2s",
+    boxShadow: active ? "0 2px 16px rgba(120,60,255,0.35)" : "none",
+  }),
   tabRow: { display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap", marginTop: 14 },
-  tabBtn: (active: boolean): React.CSSProperties => ({ padding: "8px 20px", border: "none", borderRadius: 6, background: active ? "#4caf50" : "#546e7a", color: "#fff", cursor: "pointer", fontSize: "0.9rem", fontWeight: 600 }),
-  card: { background: "#fff", borderRadius: 12, padding: 24, marginBottom: 16, boxShadow: "0 2px 8px rgba(0,0,0,0.07)" },
+  tabBtn: (active: boolean): React.CSSProperties => ({
+    padding: "8px 20px",
+    border: "none",
+    borderRadius: 6,
+    background: active ? "rgba(40,140,60,0.85)" : "rgba(50,70,100,0.65)",
+    color: "#fff",
+    cursor: "pointer",
+    fontSize: "0.9rem",
+    fontWeight: 600,
+    backdropFilter: "blur(4px)",
+  }),
+  card: {
+    background: "rgba(255,252,248,0.82)",
+    borderRadius: 14,
+    padding: 24,
+    marginBottom: 16,
+    boxShadow: "0 2px 20px rgba(10,20,80,0.12)",
+    backdropFilter: "blur(10px)",
+    border: "1px solid rgba(255,255,255,0.6)",
+  },
   statsGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, marginBottom: 4 },
-  statBox: { background: "#f0f4ff", borderRadius: 10, padding: 20, textAlign: "center", border: "1px solid #c5cae9" },
-  statBoxGreen: { background: "#e8f5e8", borderRadius: 10, padding: 20, textAlign: "center", border: "1px solid #a5d6a7" },
+  statBox: { background: "rgba(220,230,255,0.7)", borderRadius: 10, padding: 20, textAlign: "center", border: "1px solid rgba(100,130,200,0.35)" },
+  statBoxGreen: { background: "rgba(210,245,215,0.75)", borderRadius: 10, padding: 20, textAlign: "center", border: "1px solid rgba(100,180,110,0.4)" },
   statValue: { fontSize: "2rem", fontWeight: 700, color: "#1a237e", display: "block", marginBottom: 4 },
-  statValueGreen: { fontSize: "2rem", fontWeight: 700, color: "#2e7d32", display: "block", marginBottom: 4 },
-  statLabel: { fontSize: "0.9rem", color: "#546e7a", lineHeight: 1.4 },
-  economyBox: { background: "#e8f5e8", border: "1px solid #4caf50", borderRadius: 10, padding: 20, textAlign: "center", marginBottom: 0 },
+  statValueGreen: { fontSize: "2rem", fontWeight: 700, color: "#1b5e20", display: "block", marginBottom: 4 },
+  statLabel: { fontSize: "0.9rem", color: "#37474f", lineHeight: 1.4 },
+  economyBox: { background: "rgba(200,245,210,0.8)", border: "1px solid rgba(60,180,80,0.4)", borderRadius: 10, padding: 20, textAlign: "center", marginBottom: 0 },
   economyValue: { fontSize: "2.2rem", fontWeight: 700, color: "#1b5e20", display: "block", marginBottom: 6 },
   economyLabel: { fontSize: "1rem", color: "#2e7d32", fontWeight: 600 },
-  econCalc: { fontSize: "0.88rem", color: "#388e3c", marginTop: 10, lineHeight: 1.7 },
-  formulaBox: { background: "#fff8e1", border: "1px solid #ffd54f", borderRadius: 10, padding: 16, marginBottom: 12 },
-  formulaTitle: { fontWeight: 700, color: "#e65100", marginBottom: 8, fontSize: "0.95rem" },
-  formulaText: { color: "#4e342e", fontSize: "0.9rem", lineHeight: 1.7 },
-  sectionTitle: { fontSize: "1.2rem", fontWeight: 700, color: "#1a237e", marginBottom: 16, paddingBottom: 8, borderBottom: "2px solid #e8eaf6" },
+  econCalc: { fontSize: "0.88rem", color: "#2e7d32", marginTop: 10, lineHeight: 1.7 },
+  formulaBox: { background: "rgba(255,248,220,0.85)", border: "1px solid rgba(220,180,60,0.5)", borderRadius: 10, padding: 16, marginBottom: 12 },
+  formulaTitle: { fontWeight: 700, color: "#c62828", marginBottom: 8, fontSize: "0.95rem" },
+  formulaText: { color: "#3e2723", fontSize: "0.9rem", lineHeight: 1.7 },
+  sectionTitle: { fontSize: "1.2rem", fontWeight: 700, color: "#1a237e", marginBottom: 16, paddingBottom: 8, borderBottom: "2px solid rgba(100,130,200,0.35)" },
   tableWrap: { overflowX: "auto" },
   table: { width: "100%", borderCollapse: "collapse", fontSize: "0.88rem" },
-  th: { background: "#1a237e", color: "#fff", padding: "10px 12px", textAlign: "left", whiteSpace: "nowrap" },
-  td: { padding: "9px 12px", borderBottom: "1px solid #e8eaf6", color: "#2c3e50" },
-  tdTotal: { padding: "9px 12px", fontWeight: 700, background: "#e8f5e8", color: "#1b5e20" },
+  th: { background: "rgba(15,25,100,0.85)", color: "#fff", padding: "10px 12px", textAlign: "left", whiteSpace: "nowrap" },
+  td: { padding: "9px 12px", borderBottom: "1px solid rgba(100,130,200,0.2)", color: "#1a237e" },
+  tdTotal: { padding: "9px 12px", fontWeight: 700, background: "rgba(200,245,210,0.7)", color: "#1b5e20" },
   hint: { fontSize: "0.83rem", color: "#78909c", marginTop: 4 },
   sourceItem: { marginBottom: 10, paddingLeft: 12, borderLeft: "3px solid #1a237e" },
-  bullet: { fontSize: "0.9rem", color: "#37474f", padding: "2px 0", display: "block" },
-  footer: { textAlign: "center", padding: 20, color: "#90a4ae", fontSize: "0.9rem", marginTop: 8 },
+  bullet: { fontSize: "0.9rem", color: "#1a237e", padding: "2px 0", display: "block" },
+  footer: { textAlign: "center", padding: 20, color: "rgba(255,255,255,0.7)", fontSize: "0.9rem", marginTop: 8 },
 };
 
 // ─────────────── БА: Страховая + Банк ───────────────
@@ -620,6 +690,8 @@ const Index = () => {
 
   return (
     <div style={s.body}>
+      <div style={s.bodyOverlay} />
+      <img src={CHAR_IMG} alt="" style={s.character} />
       <div style={s.container}>
         <header style={s.header}>
           <h1 style={s.h1}>Специализированные ИИ-агенты | Совкомбанк</h1>
@@ -632,7 +704,7 @@ const Index = () => {
           ))}
         </div>
 
-        <div style={{ ...s.card, background: "#e8eaf6", marginBottom: 0 }}>
+        <div style={{ ...s.card, background: "rgba(220,228,255,0.75)", marginBottom: 0 }}>
           <div style={{ fontWeight: 700, color: "#1a237e", fontSize: "1.05rem", marginBottom: 4 }}>{current.label}</div>
           <div style={{ fontSize: "0.9rem", color: "#455a64" }}>{current.subtitle}</div>
         </div>
