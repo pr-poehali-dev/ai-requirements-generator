@@ -6,7 +6,7 @@ type HrTabId = "overview" | "table" | "methodology";
 type TwinTabId = "overview" | "table" | "sources";
 type UnderwriterTabId = "overview" | "processes" | "methodology" | "formulas";
 
-const BG_PATTERN = "https://cdn.poehali.dev/projects/42e938e2-bf61-4164-bb36-13a93dc5e216/bucket/ac9b8653-9db7-422c-89f0-178a9722a64f.jpg";
+const BG_PATTERN = "https://cdn.poehali.dev/projects/42e938e2-bf61-4164-bb36-13a93dc5e216/bucket/6b682718-f62c-4a5d-b293-ea69b24c49c5.jpg";
 
 const s: Record<string, React.CSSProperties> = {
   body: {
