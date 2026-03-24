@@ -332,6 +332,24 @@ const TwinOverviewTab = () => (
           <span style={s.statLabel}>Экономия в год (руб.)</span>
         </div>
       </div>
+      <div style={{ marginTop: "1rem", display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
+        <div style={{ flex: "1 1 220px", background: "#1a2236", borderRadius: "0.5rem", padding: "0.75rem 1rem", color: "#78909c", fontSize: "0.78rem", lineHeight: "1.6" }}>
+          <b style={{ color: "#90a4ae" }}>Формула экономии:</b><br />
+          Затраты до ИИ-агента − Затраты после внедрения ИИ-агента = Экономия в год
+        </div>
+        <div style={{ flex: "1 1 220px", background: "#1a2236", borderRadius: "0.5rem", padding: "0.75rem 1rem", color: "#78909c", fontSize: "0.78rem", lineHeight: "1.6" }}>
+          <b style={{ color: "#90a4ae" }}>Затраты до внедрения ИИ:</b><br />
+          15 658 активных пользователей × 715 ч.ч./год (ср. время на раб.-процессы 1 пользователя без ИИ) × 600 р./ч. (ср. себестоимость 1 часа) = <b style={{ color: "#b0bec5" }}>6 720 000 000 руб.</b>
+        </div>
+        <div style={{ flex: "1 1 220px", background: "#1a2236", borderRadius: "0.5rem", padding: "0.75rem 1rem", color: "#78909c", fontSize: "0.78rem", lineHeight: "1.6" }}>
+          <b style={{ color: "#90a4ae" }}>Затраты после внедрения ИИ:</b><br />
+          15 658 × 608 ч.ч./год (ср. время на раб.-процессы 1 пользователя с ИИ) × 600 р./ч. (ср. себестоимость 1 часа) = <b style={{ color: "#b0bec5" }}>5 742 000 000 руб.</b>
+        </div>
+        <div style={{ flex: "1 1 220px", background: "#1a2236", borderRadius: "0.5rem", padding: "0.75rem 1rem", color: "#78909c", fontSize: "0.78rem", lineHeight: "1.6" }}>
+          <b style={{ color: "#90a4ae" }}>Итоговая экономия:</b><br />
+          6 720 000 000 р. (в год без ИИ) − 5 742 000 000 р. (в год с ИИ) = <b style={{ color: "#4caf50" }}>978 000 000 р. экономии в год</b>
+        </div>
+      </div>
     </div>
     <div style={s.economyBox}>
       <span style={s.economyValue}>978 000 000 ₽</span>
