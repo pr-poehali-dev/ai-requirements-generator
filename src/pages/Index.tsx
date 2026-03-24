@@ -6,8 +6,6 @@ type HrTabId = "overview" | "table" | "methodology";
 type TwinTabId = "overview" | "table" | "sources";
 type UnderwriterTabId = "overview" | "processes" | "methodology" | "formulas";
 
-const BG_PATTERN = "https://cdn.poehali.dev/projects/42e938e2-bf61-4164-bb36-13a93dc5e216/bucket/6b682718-f62c-4a5d-b293-ea69b24c49c5.jpg";
-
 const s: Record<string, React.CSSProperties> = {
   body: {
     minHeight: "100vh",
@@ -15,20 +13,9 @@ const s: Record<string, React.CSSProperties> = {
     fontFamily: "'Segoe UI', sans-serif",
     color: "#1a1a2e",
     position: "relative",
-    backgroundImage: `url(${BG_PATTERN})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center center",
-    backgroundAttachment: "fixed",
-    backgroundColor: "#f5e6c8",
+    backgroundColor: "#f5f7fa",
   },
-  bodyOverlay: {
-    position: "fixed",
-    inset: 0,
-    background: "rgba(255,245,225,0.25)",
-    pointerEvents: "none",
-    zIndex: 0,
-  },
+  bodyOverlay: {},
 
   container: { maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 },
   header: {
