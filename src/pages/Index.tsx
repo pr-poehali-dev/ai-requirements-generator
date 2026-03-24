@@ -7,7 +7,6 @@ type TwinTabId = "overview" | "table" | "sources";
 type UnderwriterTabId = "overview" | "processes" | "methodology" | "formulas";
 
 const BG_PATTERN = "https://cdn.poehali.dev/projects/42e938e2-bf61-4164-bb36-13a93dc5e216/bucket/f8f3d329-144d-47c1-84ec-d874d3dc9b48.png";
-const CHAR_IMG = "https://cdn.poehali.dev/projects/42e938e2-bf61-4164-bb36-13a93dc5e216/bucket/53f750eb-fffd-41c5-912c-73091fc1e730.png";
 
 const s: Record<string, React.CSSProperties> = {
   body: {
@@ -17,7 +16,7 @@ const s: Record<string, React.CSSProperties> = {
     color: "#1a1a2e",
     position: "relative",
     backgroundImage: `url(${BG_PATTERN})`,
-    backgroundSize: "400px 400px",
+    backgroundSize: "900px 900px",
     backgroundRepeat: "repeat",
     backgroundColor: "#1a3a6e",
   },
@@ -28,16 +27,7 @@ const s: Record<string, React.CSSProperties> = {
     pointerEvents: "none",
     zIndex: 0,
   },
-  character: {
-    position: "fixed",
-    right: 0,
-    bottom: 0,
-    width: 320,
-    opacity: 0.22,
-    pointerEvents: "none",
-    zIndex: 1,
-    filter: "drop-shadow(0 0 40px rgba(26,35,126,0.3))",
-  },
+
   container: { maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 },
   header: {
     textAlign: "center",
@@ -691,7 +681,6 @@ const Index = () => {
   return (
     <div style={s.body}>
       <div style={s.bodyOverlay} />
-      <img src={CHAR_IMG} alt="" style={s.character} />
       <div style={s.container}>
         <header style={s.header}>
           <h1 style={s.h1}>Специализированные ИИ-агенты | Совкомбанк</h1>
