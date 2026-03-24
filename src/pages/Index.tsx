@@ -324,10 +324,6 @@ const TwinOverviewTab = () => (
           <span style={s.statLabel}>Средняя себестоимость 1 часа<br /><span style={{ fontSize: "0.8rem", color: "#90a4ae" }}>Средняя ставка по Совкомбанку (включая ТОПов, аналитиков, HR и др.)</span></span>
         </div>
         <div style={s.statBoxGreen}>
-          <span style={s.statValueGreen}>1 630 000</span>
-          <span style={s.statLabel}>Экономия в год (ч.ч.)</span>
-        </div>
-        <div style={s.statBoxGreen}>
           <span style={s.statValueGreen}>978 000 000 ₽</span>
           <span style={s.statLabel}>Экономия в год (руб.)</span>
         </div>
