@@ -13,7 +13,7 @@ const BaInsuranceTab = () => {
         <div style={s.statsGrid}>
           <div style={s.statBox}><span style={s.statValue}>812 шт.</span><span style={s.statLabel}>Сейчас (без AI-Агента)<br />Бизнес-требований написано за 1 год</span></div>
           <div style={s.statBox}><span style={s.statValue}>955 шт.</span><span style={s.statLabel}>Будет (с AI-Агентом)<br />Бизнес-требований написано за 1 год</span></div>
-          <div style={s.statBoxGreen}><span style={s.statValueGreen}>+143 шт.</span><span style={s.statLabel}>Прирост за написанных Бизнес-требований за год с использованием AI-агента</span></div>
+          <div style={s.statBoxGreen}><span style={s.statValueGreen}>+143 шт.</span><span style={s.statLabel}>Прирост написанных Бизнес-требований за год с использованием AI-агента</span></div>
         </div>
         <div style={{ marginTop: 16 }}>
           <button
@@ -188,8 +188,8 @@ const BaBankTab = () => {
         <div style={s.sectionTitle}>Банк</div>
         <div style={s.statsGrid}>
           <div style={s.statBox}><span style={s.statValue}>28 000 шт.</span><span style={s.statLabel}>Сейчас (без AI-Агента)<br />Бизнес-требований написано за 1 год</span></div>
-          <div style={s.statBox}><span style={s.statValue}>32 941</span><span style={s.statLabel}>Будет (с AI-Агентом)<br />Бизнес-Требований написано за 1 год</span></div>
-          <div style={s.statBoxGreen}><span style={s.statValueGreen}>+4 941</span><span style={s.statLabel}>Прирост написанных Бизнес-требований за год с использованием AI-агента</span></div>
+          <div style={s.statBox}><span style={s.statValue}>32 941 шт.</span><span style={s.statLabel}>Будет (с AI-Агентом)<br />Бизнес-Требований написано за 1 год</span></div>
+          <div style={s.statBoxGreen}><span style={s.statValueGreen}>+4 941 шт.</span><span style={s.statLabel}>Прирост написанных Бизнес-требований за год с использованием AI-агента</span></div>
         </div>
         <div style={{ marginTop: 16 }}>
           <button
@@ -327,7 +327,7 @@ const BaBankTab = () => {
                 { label: "Автоматизация ч.ч. на 1 БТ с ИИ-агентом", value: "29 ч.ч. - 24,65 ч.ч. =", result: "на 4,35 ч.ч. быстрее пишется 1 БТ/мес" },
                 { label: "Количество автоматизированного времени в год на написание БТ", value: "28 000 БТ/год (сейчас) × 4,35 ч.ч. автоматизации/1 БТ =", result: "121 800 ч.ч. сможет быть автоматизировано" },
                 { label: "Потенциальное кол-во прироста написанных БТ в год", value: "121 800 ч.ч. ÷ 24,65/1 БТ (с ИИ) =", result: "4 941 БТ в год (прирост написанных БТ за год с учетом автоматизации рабочих процессов)" },
-                { label: "Общая годовая оптимизация", value: "Потенциальное кол-во прирост БТ/Год * Себестоимость 1 БТ/Руб. с AI-агентом = 4 941 БТ * 20 822 ₽ =", result: "102 881 502 ₽" },
+                { label: "Общая годовая оптимизация", value: "Потенциальное кол-во прирост БТ/Год * Себестоимость 1 БТ/Руб. = 4 941 БТ * 20 822 ₽ =", result: "102 881 502 ₽" },
               ].map((item, i) => (
                 <div key={i} style={{ padding: "12px 16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5", fontSize: "0.88rem", lineHeight: 1.7 }}>
                   <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 4 }}>{item.label}</div>
@@ -342,7 +342,7 @@ const BaBankTab = () => {
         <span style={s.economyValue}>102 881 502 ₽</span>
         <span style={s.economyLabel}>Общая годовая оптимизация</span>
         <div style={s.econCalc}>
-          <b>Эквивалентно 121 800 ч.ч. высвобожденного времени</b>
+          <b>Эквивалентно 143 139 ч.ч. высвобожденного времени</b>
         </div>
       </div>
     </>
