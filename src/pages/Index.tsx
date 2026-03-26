@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 type AgentId = "ba" | "hr" | "twin" | "underwriter";
-type BaTabId = "insurance" | "bank" | "methodology";
+type BaTabId = "insurance" | "bank";
 type HrTabId = "overview" | "table" | "methodology";
 type TwinTabId = "overview" | "table" | "sources";
 type UnderwriterTabId = "overview" | "processes" | "methodology" | "formulas";
@@ -93,34 +93,58 @@ const s: Record<string, React.CSSProperties> = {
 };
 
 // ─────────────── БА: Страховая + Банк ───────────────
-const BaInsuranceTab = () => (
-  <>
-    <div style={s.card}>
-      <div style={s.sectionTitle}>Страховая Группа</div>
-      <div style={s.statsGrid}>
-        <div style={s.statBox}><span style={s.statValue}>812 шт.</span><span style={s.statLabel}>Сейчас (без AI-Агента)<br />Бизнес-требований написано за 1 год</span></div>
-        <div style={s.statBox}><span style={s.statValue}>1 015 шт.</span><span style={s.statLabel}>Будет (с AI-Агентом)<br />Бизнес-требований написано за 1 год</span></div>
-        <div style={s.statBoxGreen}><span style={s.statValueGreen}>+203 шт.</span><span style={s.statLabel}>Прирост за написанных Бизнес-требований за год с использованием AI-агента</span></div>
+const BaInsuranceTab = () => {
+  const [showDetail, setShowDetail] = useState(false);
+  return (
+    <>
+      <div style={s.card}>
+        <div style={s.sectionTitle}>Страховая Группа</div>
+        <div style={s.statsGrid}>
+          <div style={s.statBox}><span style={s.statValue}>812 шт.</span><span style={s.statLabel}>Сейчас (без AI-Агента)<br />Бизнес-требований написано за 1 год</span></div>
+          <div style={s.statBox}><span style={s.statValue}>1 015 шт.</span><span style={s.statLabel}>Будет (с AI-Агентом)<br />Бизнес-требований написано за 1 год</span></div>
+          <div style={s.statBoxGreen}><span style={s.statValueGreen}>+203 шт.</span><span style={s.statLabel}>Прирост за написанных Бизнес-требований за год с использованием AI-агента</span></div>
+        </div>
+        <div style={{ marginTop: 16 }}>
+          <button
+            onClick={() => setShowDetail(v => !v)}
+            style={{ padding: "10px 20px", background: showDetail ? "#0056b3" : "#e8f0fe", color: showDetail ? "#fff" : "#0056b3", border: "1.5px solid #0056b3", borderRadius: 8, cursor: "pointer", fontWeight: 600, fontSize: "0.95rem", transition: "all 0.2s" }}
+          >
+            {showDetail ? "▲ Скрыть детализацию" : "▼ Детализация экономии"}
+          </button>
+        </div>
+        {showDetail && (
+          <div style={{ marginTop: 16, padding: "20px", background: "#f0f4ff", borderRadius: 10, border: "1px solid #c5d5f5" }}>
+            <div style={{ fontWeight: 700, fontSize: "1.05rem", color: "#1a237e", marginBottom: 14 }}>Источники данных</div>
+            <div style={{ marginBottom: 18, padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
+              <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>1. Статистика работы БА (за 6 месяцев)</div>
+              <div style={{ fontWeight: 600, color: "#333", marginBottom: 8 }}>16 Бизнес-Аналитиков</div>
+              <div style={{ lineHeight: 1.9, color: "#333", fontSize: "0.93rem" }}>
+                <div>• Общее количество написанных БТ за 6 мес. = <b>287 шт.</b></div>
+                <div>• Среднее количество написанных БТ за 1 мес. = 287 шт. ÷ 16 БА ÷ 6 мес. = <b>3 БТ/мес.</b></div>
+              </div>
+            </div>
+            <div style={{ padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
+              <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>2. Себестоимость 1 рабочего часа Бизнес-Аналитика</div>
+              <div style={{ lineHeight: 2, color: "#333", fontSize: "0.93rem" }}>
+                <div>• Средняя з./п. БА в мес. = Сумма з./п. (Мл. БА + БА + Старший БА + Ведущий БА) ÷ 4 = 460 000 ₽ ÷ 4 = <b>115 000 ₽/мес.</b></div>
+                <div>• Ср. количество рабочих часов в мес. = 40 ч. в неделю × 4 недели = <b>160 ч.</b></div>
+                <div>• Стоимость 1 часа = 115 000 ₽/мес. ÷ 160 ч./мес. = <b>718,75 руб./час</b></div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
-    <div style={s.card}>
-      <div style={s.formulaTitle}>Расчет экономии на 812 БТ</div>
-      <div style={s.formulaText}>
-        <b>Формула:</b> Экономия = Количество БТ × Экономия на 1 БТ<br />
-        <b>Расчет:</b> 812 БТ × 3 124 ₽/БТ = <b>2 536 688 ₽</b>
-        <div style={s.hint}>Это экономия только на текущих 812 БТ — без учёта дополнительных</div>
+      <div style={s.economyBox}>
+        <span style={s.economyValue}>3 170 860 ₽</span>
+        <span style={s.economyLabel}>Общая годовая оптимизация</span>
+        <div style={s.econCalc}>
+          2 536 688 ₽ (на 812 БТ) + 634 172 ₽ (на 203 БТ) = 3 170 860 ₽<br />
+          <b>Эквивалентно 3 573 ч высвобожденного времени</b>
+        </div>
       </div>
-    </div>
-    <div style={s.economyBox}>
-      <span style={s.economyValue}>3 170 860 ₽</span>
-      <span style={s.economyLabel}>Общая годовая оптимизация</span>
-      <div style={s.econCalc}>
-        2 536 688 ₽ (на 812 БТ) + 634 172 ₽ (на 203 БТ) = 3 170 860 ₽<br />
-        <b>Эквивалентно 3 573 ч высвобожденного времени</b>
-      </div>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 const BaBankTab = () => (
   <>
@@ -204,7 +228,6 @@ const BaAgent = () => {
   const tabs: { id: BaTabId; label: string }[] = [
     { id: "insurance", label: "Страховая Группа" },
     { id: "bank", label: "Банк" },
-    { id: "methodology", label: "Методология" },
   ];
   return (
     <>
@@ -213,7 +236,6 @@ const BaAgent = () => {
       </div>
       {tab === "insurance" && <BaInsuranceTab />}
       {tab === "bank" && <BaBankTab />}
-      {tab === "methodology" && <BaMethodologyTab />}
     </>
   );
 };
