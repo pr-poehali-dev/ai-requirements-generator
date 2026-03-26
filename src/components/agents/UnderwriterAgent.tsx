@@ -1,5 +1,5 @@
 import { useState } from "react";
-import s from "@/pages/agentStyles";
+import { s } from "@/pages/agentStyles";
 
 type UnderwriterTabId = "overview" | "processes" | "methodology" | "formulas";
 
