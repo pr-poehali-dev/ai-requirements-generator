@@ -51,10 +51,93 @@ const BaInsuranceTab = () => {
                 <div>• Время написания 1 БТ = (7,2 ч. × 22 дня) ÷ 3 БТ/мес. = <b>52 ч./1 БТ</b></div>
               </div>
             </div>
-            <div style={{ padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
+            <div style={{ marginBottom: 18, padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
               <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>4. Годовой отчет по кол-ву написанных БТ в Страховой Группе</div>
               <div style={{ lineHeight: 2, color: "#333", fontSize: "0.93rem" }}>
                 <div>• <b>812 шт.</b> Бизнес-Требований было написано за год от Страховой Группы</div>
+              </div>
+            </div>
+            <div style={{ padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
+              <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>5. Значения эффективности ИИ-агента для системных аналитиков на основе презентации СКБТ от 09.07.2025</div>
+              <div style={{ lineHeight: 2, color: "#333", fontSize: "0.93rem" }}>
+                <div>• Экономия до <b>3 ч.</b> в неделю на решение рабочих процессов по анализу БТ</div>
+                <div>• Качество ТЗ повышается на <b>15%</b></div>
+                <div>• Анализ БТ ускоряется на <b>5%</b></div>
+                <div>• Подготовка ТХ ускоряется на <b>10%</b></div>
+              </div>
+            </div>
+
+            <div style={{ fontWeight: 700, fontSize: "1.05rem", color: "#1a237e", margin: "22px 0 14px" }}>Рабочие процессы Бизнес/Системных аналитиков, участвующие при написании БТ/ТЗ</div>
+
+            <div style={{ marginBottom: 18 }}>
+              <div style={{ fontWeight: 700, color: "#333", marginBottom: 8, fontSize: "0.95rem" }}>I. Рабочие процессы Бизнес-аналитика (Страховая Группа)</div>
+              <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
+                  <thead>
+                    <tr>
+                      {["№", "Наименование рабочего процесса", "Ч.Ч./день\n(без ИИ)", "Ч.Ч./мес\n(без ИИ)", "Ч.Ч./год\n(без ИИ)", "Ч.Ч./день\n(с ИИ)", "Ч.Ч./мес\n(с ИИ)", "Ч.Ч./год\n(с ИИ)", "% опт.\n(за год)"].map((h, i) => (
+                        <th key={i} style={{ background: "#1a237e", color: "#fff", padding: "8px 10px", textAlign: i === 1 ? "left" : "center", whiteSpace: "pre-line", lineHeight: 1.3, fontSize: "0.8rem" }}>{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      [1, "Генерация вопросов к заказчику перед первой встречей", "0.5", "11.0", "132", "0.38", "8.25", "99", "25%"],
+                      [2, "Подготовка к встречам (составление повестки, сбор информации)", "0.75", "16.5", "198", "0.56", "12.38", "148.5", "25%"],
+                      [3, "Оформление встреч (написание протокола, транскрибация)", "0.75", "16.5", "198", "0.56", "12.38", "148.5", "25%"],
+                      [4, "Поиск и рекомендация успешных практик (проектов/задач)", "0.5", "11.0", "132", "0.38", "8.25", "99", "25%"],
+                      [5, "Генерация Бизнес-Требований (БТ)", "4.0", "88.0", "1 056", "3.0", "66.0", "792", "25%"],
+                      [6, "Проверка и оценка Бизнес-Требований перед передачей в ИТ", "1.0", "22.0", "264", "0.75", "16.5", "198", "25%"],
+                    ].map((row, i) => (
+                      <tr key={i} style={{ background: i % 2 === 0 ? "#f5f7ff" : "#fff" }}>
+                        {row.map((cell, j) => (
+                          <td key={j} style={{ padding: "7px 10px", borderBottom: "1px solid #e0e6f0", color: j === 1 ? "#1a237e" : "#333", textAlign: j === 1 ? "left" : "center", fontWeight: j === 0 ? 600 : 400 }}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                    <tr style={{ background: "#e8f0fe", fontWeight: 700 }}>
+                      <td style={{ padding: "8px 10px", borderTop: "2px solid #0056b3", color: "#1a237e", textAlign: "center" }} colSpan={2}>ИТОГО</td>
+                      {["7.5", "165.0", "1 980", "5.63", "123.75", "1 485", "25%"].map((v, i) => (
+                        <td key={i} style={{ padding: "8px 10px", borderTop: "2px solid #0056b3", color: "#1b5e20", textAlign: "center", fontWeight: 700 }}>{v}</td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <div style={{ fontWeight: 700, color: "#333", marginBottom: 8, fontSize: "0.95rem" }}>II. Рабочие процессы Системного аналитика (Совкомбанк Технологии)</div>
+              <div style={{ overflowX: "auto" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
+                  <thead>
+                    <tr>
+                      {["№", "Наименование рабочего процесса", "Ч.Ч./день\n(без ИИ)", "Ч.Ч./мес\n(без ИИ)", "Ч.Ч./год\n(без ИИ)", "Ч.Ч./день\n(с ИИ)", "Ч.Ч./мес\n(с ИИ)", "Ч.Ч./год\n(с ИИ)", "% опт.\n(за год)"].map((h, i) => (
+                        <th key={i} style={{ background: "#1a237e", color: "#fff", padding: "8px 10px", textAlign: i === 1 ? "left" : "center", whiteSpace: "pre-line", lineHeight: 1.3, fontSize: "0.8rem" }}>{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      [1, "Анализ Бизнес-Требований, полученных от Бизнес-Аналитиков", "1.5", "33.0", "396", "1.28", "28.05", "336.6", "15%"],
+                      [2, "Написание Технического Задания (ТЗ) на основе БТ", "3.0", "66.0", "792", "2.55", "56.1", "673.2", "15%"],
+                      [3, "Сопоставление ТЗ и БТ, выявление ошибок и несоответствий", "1.5", "33.0", "396", "1.28", "28.05", "336.6", "15%"],
+                      [4, "Написание пользовательской документации по проекту", "1.0", "22.0", "264", "0.85", "18.7", "224.4", "15%"],
+                    ].map((row, i) => (
+                      <tr key={i} style={{ background: i % 2 === 0 ? "#f5f7ff" : "#fff" }}>
+                        {row.map((cell, j) => (
+                          <td key={j} style={{ padding: "7px 10px", borderBottom: "1px solid #e0e6f0", color: j === 1 ? "#1a237e" : "#333", textAlign: j === 1 ? "left" : "center", fontWeight: j === 0 ? 600 : 400 }}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                    <tr style={{ background: "#e8f0fe", fontWeight: 700 }}>
+                      <td style={{ padding: "8px 10px", borderTop: "2px solid #0056b3", color: "#1a237e", textAlign: "center" }} colSpan={2}>ИТОГО</td>
+                      {["7.0", "154.0", "1 848", "5.95", "130.9", "1 570.8", "15%"].map((v, i) => (
+                        <td key={i} style={{ padding: "8px 10px", borderTop: "2px solid #0056b3", color: "#1b5e20", textAlign: "center", fontWeight: 700 }}>{v}</td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
