@@ -120,15 +120,30 @@ const BaInsuranceTab = () => {
               <div style={{ fontWeight: 600, color: "#333", marginBottom: 8 }}>16 Бизнес-Аналитиков</div>
               <div style={{ lineHeight: 1.9, color: "#333", fontSize: "0.93rem" }}>
                 <div>• Общее количество написанных БТ за 6 мес. = <b>287 шт.</b></div>
-                <div>• Среднее количество написанных БТ за 1 мес. = 287 шт. ÷ 16 БА ÷ 6 мес. = <b>3 БТ/мес.</b></div>
+                <div>• Среднее количество написанных БТ за 1 мес. одним БА = 287 шт. ÷ 16 БА ÷ 6 мес. = <b>3 БТ/мес.</b></div>
               </div>
             </div>
-            <div style={{ padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
+            <div style={{ marginBottom: 18, padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
               <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>2. Себестоимость 1 рабочего часа Бизнес-Аналитика</div>
               <div style={{ lineHeight: 2, color: "#333", fontSize: "0.93rem" }}>
                 <div>• Средняя з./п. БА в мес. = Сумма з./п. (Мл. БА + БА + Старший БА + Ведущий БА) ÷ 4 = 460 000 ₽ ÷ 4 = <b>115 000 ₽/мес.</b></div>
                 <div>• Ср. количество рабочих часов в мес. = 40 ч. в неделю × 4 недели = <b>160 ч.</b></div>
                 <div>• Стоимость 1 часа = 115 000 ₽/мес. ÷ 160 ч./мес. = <b>718,75 руб./час</b></div>
+              </div>
+            </div>
+            <div style={{ marginBottom: 18, padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
+              <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>3. Себестоимость 1 Бизнес-Требования</div>
+              <div style={{ lineHeight: 2, color: "#333", fontSize: "0.93rem" }}>
+                <div>• Кол-во часов на рабочие процессы по написанию БТ в день = <b>7,2 ч.</b></div>
+                <div>• Рабочих дней в месяце = <b>22 дня</b></div>
+                <div>• Среднее кол-во написанных БТ в месяц на 1 БА = <b>3 шт.</b></div>
+                <div>• Время написания 1 БТ = (7,2 ч. × 22 дня) ÷ 3 БТ/мес. = <b>52 ч./1 БТ</b></div>
+              </div>
+            </div>
+            <div style={{ padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
+              <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>4. Годовой отчет по кол-ву написанных БТ в Страховой Группе</div>
+              <div style={{ lineHeight: 2, color: "#333", fontSize: "0.93rem" }}>
+                <div>• <b>812 шт.</b> Бизнес-Требований было написано за год от Страховой Группы</div>
               </div>
             </div>
           </div>

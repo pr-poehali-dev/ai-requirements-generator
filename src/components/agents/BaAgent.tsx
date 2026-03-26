@@ -1,6 +1,7 @@
 import { useState } from "react";
 import s from "@/pages/agentStyles";
 
+
 type BaTabId = "insurance" | "bank";
 
 const BaInsuranceTab = () => {
