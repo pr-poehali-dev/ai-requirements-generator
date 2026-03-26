@@ -39,7 +39,7 @@ const TwinOverviewTab = () => {
             <span style={s.statLabel}>Средняя себестоимость 1 часа<br /><span style={{ fontSize: "0.8rem", color: "#90a4ae" }}>Средняя ставка по Совкомбанку (включая ТОПов, аналитиков, HR и др.)</span></span>
           </div>
           <div style={s.statBoxGreen}>
-            <span style={s.statValueGreen}>124 200 000 ₽</span>
+            <span style={s.statValueGreen}>+ 345 258 900 ₽</span>
             <span style={s.statLabel}>Экономии в год за счет автоматизации рабочих процессов сотрудников в Pyrus</span>
           </div>
         </div>
@@ -117,11 +117,8 @@ const TwinOverviewTab = () => {
         </div>
       )}
       <div style={s.economyBox}>
-        <span style={s.economyValue}>124 200 000 ₽</span>
-        <span style={s.economyLabel}>Общая годовая автоматизация</span>
-        <div style={s.econCalc}>
-          Эквивалентно <b>207 000 ч.ч.</b>
-        </div>
+        <span style={s.economyValue}>+ 345 258 900 ₽</span>
+        <span style={s.economyLabel}>Экономии в год за счет автоматизации рабочих процессов сотрудников в Pyrus</span>
       </div>
     </>
   );
