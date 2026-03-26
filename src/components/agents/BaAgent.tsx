@@ -187,8 +187,8 @@ const BaBankTab = () => {
         <div style={s.sectionTitle}>Банк</div>
         <div style={s.statsGrid}>
           <div style={s.statBox}><span style={s.statValue}>28 000</span><span style={s.statLabel}>Сейчас (без AI-Агента)<br />Бизнес-требований написано за 1 год</span></div>
-          <div style={s.statBox}><span style={s.statValue}>28 000</span><span style={s.statLabel}>С ИИ-агентом<br />БТ потенциально за год</span></div>
-          <div style={s.statBoxGreen}><span style={s.statValueGreen}>+5 600</span><span style={s.statLabel}>Прирост<br />дополнительных БТ (+25%)</span></div>
+          <div style={s.statBox}><span style={s.statValue}>32 941</span><span style={s.statLabel}>Будет (с AI-Агентом)<br />Бизнес-Требований написано за 1 год</span></div>
+          <div style={s.statBoxGreen}><span style={s.statValueGreen}>+4 941</span><span style={s.statLabel}>Прирост написанных Бизнес-требований за год с использованием AI-агента</span></div>
         </div>
         <div style={{ marginTop: 16 }}>
           <button
