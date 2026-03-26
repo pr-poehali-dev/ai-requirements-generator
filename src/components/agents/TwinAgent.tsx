@@ -22,6 +22,7 @@ const pyrusProcesses = [
 ];
 
 const TwinOverviewTab = () => {
+  const [showDetail, setShowDetail] = useState(false);
   return (
     <>
       <div style={s.card}>
@@ -61,6 +62,60 @@ const TwinOverviewTab = () => {
           </div>
         </div>
       </div>
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+        <button
+          onClick={() => setShowDetail(v => !v)}
+          style={{ background: showDetail ? "#0056b3" : "#fff", color: showDetail ? "#fff" : "#0056b3", border: "2px solid #0056b3", borderRadius: 8, padding: "10px 28px", fontSize: "0.95rem", fontWeight: 700, cursor: "pointer", transition: "all 0.2s" }}
+        >
+          {showDetail ? "Скрыть детализацию" : "Детализация экономики"}
+        </button>
+      </div>
+      {showDetail && (
+        <div style={{ ...s.card, marginBottom: 16 }}>
+          <div style={s.sectionTitle}>Основные рабочие процессы сотрудников в Pyrus</div>
+          <div style={{ fontSize: "0.82rem", color: "#607d8b", marginBottom: 12 }}>Экономия по каждому процессу (на 1 пользователя)</div>
+          <div style={s.tableWrap}>
+            <table style={s.table}>
+              <thead>
+                <tr>
+                  <th style={s.th}>№</th>
+                  <th style={s.th}>Бизнес-процесс</th>
+                  <th style={s.th}>Время без ИИ (ч/день)</th>
+                  <th style={s.th}>% оптимизации</th>
+                  <th style={s.th}>Время с ИИ (ч/день)</th>
+                  <th style={s.th}>Экономия в день (ч)</th>
+                  <th style={s.th}>Экономия в год (ч)</th>
+                  <th style={s.th}>Экономия в год (руб.)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pyrusProcesses.map((row, i) => (
+                  <tr key={i} style={{ background: i % 2 === 0 ? "#fafafa" : "#fff" }}>
+                    <td style={s.td}>{i + 1}</td>
+                    <td style={s.td}>{row.name}</td>
+                    <td style={s.td}>{row.withoutAI}</td>
+                    <td style={s.td}>{row.pct}</td>
+                    <td style={s.td}>{row.withAI}</td>
+                    <td style={s.td}>{row.saveDay}</td>
+                    <td style={s.td}>{row.saveYear}</td>
+                    <td style={s.td}>{row.saveRub} ₽</td>
+                  </tr>
+                ))}
+                <tr>
+                  <td style={s.tdTotal}>—</td>
+                  <td style={s.tdTotal}>ИТОГО</td>
+                  <td style={s.tdTotal}>2.75 ч/день</td>
+                  <td style={s.tdTotal}>5%</td>
+                  <td style={s.tdTotal}>2.6125 ч/день</td>
+                  <td style={s.tdTotal}>0.1375 ч/день</td>
+                  <td style={s.tdTotal}>36.4125 ч/год</td>
+                  <td style={s.tdTotal}>21 862.5 ₽</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
       <div style={s.economyBox}>
         <span style={s.economyValue}>124 200 000 ₽</span>
         <span style={s.economyLabel}>Общая годовая автоматизация</span>
@@ -139,7 +194,6 @@ const TwinAgent = () => {
   const [tab, setTab] = useState<TwinTabId>("overview");
   const tabs: { id: TwinTabId; label: string }[] = [
     { id: "overview", label: "Обзор" },
-    { id: "table", label: "Детализация" },
     { id: "sources", label: "Источники" },
   ];
   return (
@@ -148,7 +202,6 @@ const TwinAgent = () => {
         {tabs.map(t => <button key={t.id} onClick={() => setTab(t.id)} style={s.tabBtn(tab === t.id)}>{t.label}</button>)}
       </div>
       {tab === "overview" && <TwinOverviewTab />}
-      {tab === "table" && <TwinTableTab />}
       {tab === "sources" && <TwinSourcesTab />}
     </>
   );
