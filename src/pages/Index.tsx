@@ -98,9 +98,9 @@ const BaInsuranceTab = () => (
     <div style={s.card}>
       <div style={s.sectionTitle}>Страховая Группа</div>
       <div style={s.statsGrid}>
-        <div style={s.statBox}><span style={s.statValue}>812</span><span style={s.statLabel}>Сейчас (без ИИ)<br />БТ реализовано за год</span></div>
-        <div style={s.statBox}><span style={s.statValue}>1 015</span><span style={s.statLabel}>С ИИ-агентом<br />БТ потенциально за год</span></div>
-        <div style={s.statBoxGreen}><span style={s.statValueGreen}>+203</span><span style={s.statLabel}>Прирост<br />дополнительных БТ (+25%)</span></div>
+        <div style={s.statBox}><span style={s.statValue}>812 шт.</span><span style={s.statLabel}>Сейчас (без AI-Агента)<br />Бизнес-требований написано за 1 год</span></div>
+        <div style={s.statBox}><span style={s.statValue}>1 015 шт.</span><span style={s.statLabel}>Будет (с AI-Агентом)<br />Бизнес-требований написано за 1 год</span></div>
+        <div style={s.statBoxGreen}><span style={s.statValueGreen}>+203 шт.</span><span style={s.statLabel}>Прирост за написанных Бизнес-требований за год с использованием AI-агента</span></div>
       </div>
     </div>
     <div style={s.card}>
