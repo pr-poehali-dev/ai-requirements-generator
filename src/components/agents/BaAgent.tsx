@@ -157,6 +157,7 @@ const BaInsuranceTab = () => {
                 { label: "Автоматизация ч.ч. на 1 БТ с ИИ-агентом", value: "52 ч.ч. - 44,2 ч.ч. =", result: "на 7,8 ч.ч. быстрее пишется 1 БТ/мес" },
                 { label: "Количество автоматизированного времени в год на написание БТ", value: "812 БТ/год (сейчас) × 7,8 ч.ч. автоматизации/1 БТ =", result: "6 333,6 ч.ч. сможет быть автоматизировано" },
                 { label: "Потенциальное кол-во прироста написанных БТ в год", value: "6 333,6 ч.ч. ÷ 44,2/1 БТ (с ИИ) =", result: "143 БТ в год (прирост написанных БТ за год с учетом автоматизации рабочих процессов)" },
+                { label: "Общая годовая оптимизация", value: "Потенциальное кол-во прирост БТ/Год * Себестоимость 1 БТ/Руб. с AI-агентом = 143 БТ * 31 735,6 ₽ =", result: "4 538 190 ₽" },
               ].map((item, i) => (
                 <div key={i} style={{ padding: "12px 16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5", fontSize: "0.88rem", lineHeight: 1.7 }}>
                   <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 4 }}>{item.label}</div>
@@ -201,11 +202,9 @@ const BaBankTab = () => {
           <div style={{ marginTop: 16, padding: "20px", background: "#f0f4ff", borderRadius: 10, border: "1px solid #c5d5f5" }}>
             <div style={{ fontWeight: 700, fontSize: "1.05rem", color: "#1a237e", marginBottom: 14 }}>Источники данных</div>
             <div style={{ marginBottom: 18, padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
-              <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>1. Статистика работы БА (за 6 месяцев)</div>
-              <div style={{ fontWeight: 600, color: "#333", marginBottom: 8 }}>16 Бизнес-Аналитиков</div>
+              <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>1. Годовой отчет по кол-ву написанных БТ от Банка</div>
               <div style={{ lineHeight: 1.9, color: "#333", fontSize: "0.93rem" }}>
-                <div>• Общее количество написанных БТ за 6 мес. = <b>287 шт.</b></div>
-                <div>• Среднее количество написанных БТ за 1 мес. одним БА = 287 шт. ÷ 16 БА ÷ 6 мес. = <b>3 БТ/мес.</b></div>
+                <div>• <b>28 000 шт.</b> Бизнес-Требований было написано за год в Банке</div>
               </div>
             </div>
             <div style={{ marginBottom: 18, padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
@@ -226,10 +225,7 @@ const BaBankTab = () => {
               </div>
             </div>
             <div style={{ marginBottom: 18, padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
-              <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>4. Годовой отчет по кол-ву написанных БТ в Банке</div>
-              <div style={{ lineHeight: 2, color: "#333", fontSize: "0.93rem" }}>
-                <div>• <b>28 000 шт.</b> Бизнес-Требований было написано за год в Банке</div>
-              </div>
+              <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>4. Среднее количество написанных БТ за 1 мес. возьмем аналогично Страховой Группе = 3 БТ/Мес.</div>
             </div>
             <div style={{ padding: "16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5" }}>
               <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 10, fontSize: "0.97rem" }}>5. Значения эффективности ИИ-агента для системных аналитиков на основе презентации СКБТ от 09.07.2025</div>
@@ -330,6 +326,7 @@ const BaBankTab = () => {
                 { label: "Автоматизация ч.ч. на 1 БТ с ИИ-агентом", value: "52 ч.ч. - 44,2 ч.ч. =", result: "на 7,8 ч.ч. быстрее пишется 1 БТ/мес" },
                 { label: "Количество автоматизированного времени в год на написание БТ", value: "28 000 БТ/год (сейчас) × 7,8 ч.ч. автоматизации/1 БТ =", result: "218 400 ч.ч. сможет быть автоматизировано" },
                 { label: "Потенциальное кол-во прироста написанных БТ в год", value: "218 400 ч.ч. ÷ 44,2/1 БТ (с ИИ) =", result: "4 941 БТ в год (прирост написанных БТ за год с учетом автоматизации рабочих процессов)" },
+                { label: "Общая годовая оптимизация", value: "Потенциальное кол-во прирост БТ/Год * Себестоимость 1 БТ/Руб. с AI-агентом = 4 931 БТ * 31 735,6 ₽ =", result: "157 488 243 ₽" },
               ].map((item, i) => (
                 <div key={i} style={{ padding: "12px 16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5", fontSize: "0.88rem", lineHeight: 1.7 }}>
                   <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 4 }}>{item.label}</div>
@@ -341,11 +338,10 @@ const BaBankTab = () => {
         )}
       </div>
       <div style={s.economyBox}>
-        <span style={s.economyValue}>87 472 000 ₽</span>
+        <span style={s.economyValue}>156 488 243 ₽</span>
         <span style={s.economyLabel}>Общая годовая оптимизация</span>
         <div style={s.econCalc}>
-          69 977 600 ₽ (на 22 400 БТ) + 17 494 400 ₽ (на 5 600 БТ) = 87 472 000 ₽<br />
-          <b>Эквивалентно 123 200 ч высвобожденного времени</b>
+          <b>Эквивалентно 218 400 ч.ч. высвобожденного времени</b>
         </div>
       </div>
     </>
