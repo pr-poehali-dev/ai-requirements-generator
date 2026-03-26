@@ -1,4 +1,4 @@
-const s: Record<string, React.CSSProperties> = {
+export const s: Record<string, React.CSSProperties> = {
   body: {
     minHeight: "100vh",
     padding: "20px",
