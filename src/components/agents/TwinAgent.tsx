@@ -27,9 +27,9 @@ const TwinOverviewTab = () => {
     <>
       <div style={s.card}>
         <div style={s.statsGrid}>
-          <div style={s.statBox}><span style={s.statValue}>1 390 000</span><span style={s.statLabel}>Ч.Ч. на рабочие процессы сотрудников в Pyrus за год<br />(без AI-Агента)</span></div>
-          <div style={s.statBox}><span style={s.statValue}>1 183 000</span><span style={s.statLabel}>Ч.Ч. на рабочие процессы сотрудников в Pyrus за год<br />(с использованием AI-Агента)</span></div>
-          <div style={s.statBoxGreen}><span style={s.statValueGreen}>+ 207 000 Ч.Ч.</span><span style={s.statLabel}>автоматизации за год</span></div>
+          <div style={s.statBox}><span style={s.statValue}>11 419 767</span><span style={s.statLabel}>Ч.Ч. на рабочие процессы сотрудников в Pyrus за год<br />(без AI-Агента)</span></div>
+          <div style={s.statBox}><span style={s.statValue}>10 835 336</span><span style={s.statLabel}>Ч.Ч. на рабочие процессы сотрудников в Pyrus за год<br />(с использованием AI-Агента)</span></div>
+          <div style={s.statBoxGreen}><span style={s.statValueGreen}>+ 584 431 Ч.Ч.</span><span style={s.statLabel}>автоматизации за год</span></div>
         </div>
       </div>
       <div style={s.card}>
