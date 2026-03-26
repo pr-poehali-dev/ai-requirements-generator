@@ -30,9 +30,12 @@ const s: Record<string, React.CSSProperties> = {
   },
   h1: { fontSize: "1.7rem", marginBottom: 8, letterSpacing: "0.03em" },
   subtitle: { fontSize: "0.95rem", opacity: 0.85, lineHeight: 1.5 },
-  agentRow: { display: "flex", gap: 10, marginBottom: 6, flexWrap: "wrap" },
+  agentRow: { display: "flex", flexDirection: "column", gap: 8, marginBottom: 6 },
   agentBtn: (active: boolean): React.CSSProperties => ({
-    padding: "12px 28px",
+    display: "flex",
+    alignItems: "center",
+    gap: 14,
+    padding: "12px 22px",
     border: active ? "2px solid #007bff" : "2px solid rgba(0,123,255,0.35)",
     borderRadius: 10,
     background: active ? "#0056b3" : "rgba(0,86,179,0.55)",
@@ -42,6 +45,7 @@ const s: Record<string, React.CSSProperties> = {
     fontWeight: 700,
     transition: "all 0.2s",
     boxShadow: active ? "0 2px 16px rgba(0,86,179,0.4)" : "none",
+    textAlign: "left",
   }),
   tabRow: { display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap", marginTop: 14 },
   tabBtn: (active: boolean): React.CSSProperties => ({
@@ -733,10 +737,10 @@ const UnderwriterAgent = () => {
 
 // ─────────────── Конфигурация агентов ───────────────
 const agents: { id: AgentId; label: string; subtitle: string }[] = [
-  { id: "ba", label: "Универсальный ассистент бизнес/системных-процессов", subtitle: "Анализ эффективности внедрения ИИ-ассистента для бизнес/системных-аналитиков. Период: 1 год." },
+  { id: "ba", label: "Универсальный ассистент бизнес/системных процессов", subtitle: "Анализ эффективности внедрения ИИ-ассистента для бизнес/системных-аналитиков. Период: 1 год." },
   { id: "hr", label: "Помощник руководителей и рекрутеров HR СГ", subtitle: "Анализ эффективности внедрения ИИ-агента для Страховой Группы с периодом в 1 год. Без IT-затрат, без кода, с полным сопровождением." },
-  { id: "twin", label: "Цифровой двойник сотрудника", subtitle: "Анализ эффективности внедрения ИИ-агента для Совкомбанка с периодом в 1 год. Оптимизация рутинных задач в Pyrus — без кода, без IT-затрат, с экономией до 15% времени." },
   { id: "underwriter", label: "Цифровой двойник Андеррайтеров Имущества", subtitle: "Анализ экономического эффекта от внедрения ИИ-агента для андеррайтинга по имуществу. Оптимизация с ИИ-агентом 45%. Период: 1 год." },
+  { id: "twin", label: "Конструктор Цифрового двойника сотрудника", subtitle: "Анализ эффективности внедрения ИИ-агента для Совкомбанка с периодом в 1 год. Оптимизация рутинных задач в Pyrus — без кода, без IT-затрат, с экономией до 15% времени." },
 ];
 
 // ─────────────── Главный компонент ───────────────
@@ -754,8 +758,11 @@ const Index = () => {
         </header>
 
         <div style={s.agentRow}>
-          {agents.map(a => (
-            <button key={a.id} onClick={() => setAgent(a.id)} style={s.agentBtn(agent === a.id)}>{a.label}</button>
+          {agents.map((a, i) => (
+            <button key={a.id} onClick={() => setAgent(a.id)} style={s.agentBtn(agent === a.id)}>
+              <span style={{ minWidth: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.9rem", fontWeight: 800, flexShrink: 0 }}>{i + 1}</span>
+              {a.label}
+            </button>
           ))}
         </div>
 
