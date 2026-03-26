@@ -32,8 +32,7 @@ const UnderwriterOverviewTab = () => (
       <span style={s.economyValue}>2 061 990 ₽</span>
       <span style={s.economyLabel}>Общая годовая оптимизация</span>
       <div style={s.econCalc}>
-        1 350 ч × 1 091 ₽/ч × 1.4 = <b>2 061 990 ₽/год</b><br />
-        <b>Состав команды:</b> 7 андеррайтеров ИЮЛ + 2 начальника отдела + 1 главный андеррайтер
+        1 350 ч × 1 091 ₽/ч × 1.4 = <b>2 061 990 ₽/год</b>
       </div>
     </div>
   </>
