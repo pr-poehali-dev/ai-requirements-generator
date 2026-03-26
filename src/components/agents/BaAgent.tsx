@@ -71,6 +71,7 @@ const BaInsuranceTab = () => {
 
             <div style={{ marginBottom: 18 }}>
               <div style={{ fontWeight: 700, color: "#333", marginBottom: 8, fontSize: "0.95rem" }}>I. Рабочие процессы Бизнес-аналитика (Страховая Группа)</div>
+
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
                   <thead>
@@ -103,6 +104,9 @@ const BaInsuranceTab = () => {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+              <div style={{ marginTop: 12, padding: "12px 16px", background: "#e8f5e9", borderRadius: 8, border: "1px solid #a5d6a7", fontSize: "0.87rem", color: "#1b5e20", lineHeight: 1.8 }}>
+                <b>Автоматизация рабочих процессов БА по написанию БТ в год</b> = Кол-во ч.ч./год (без ИИ) − Кол-во ч.ч./год (с ИИ) = 1 980 ч.ч./год − 1 485 ч.ч./год = <b>495 ч.ч./год автоматизации</b>
               </div>
             </div>
 
@@ -139,6 +143,26 @@ const BaInsuranceTab = () => {
                   </tbody>
                 </table>
               </div>
+              <div style={{ marginTop: 12, padding: "12px 16px", background: "#e8f5e9", borderRadius: 8, border: "1px solid #a5d6a7", fontSize: "0.87rem", color: "#1b5e20", lineHeight: 1.8 }}>
+                <b>Автоматизация рабочих процессов СА по анализу БТ и написанию ТЗ в год</b> = Кол-во ч.ч./год (без ИИ) − Кол-во ч.ч./год (с ИИ) = 1 848 ч.ч./год − 1 570,8 ч.ч. = <b>277,2 ч.ч./год автоматизации</b>
+              </div>
+            </div>
+
+            <div style={{ fontWeight: 700, fontSize: "1.05rem", color: "#1a237e", margin: "22px 0 14px" }}>Расчет годовой автоматизации написания БТ (прирост кол-ва БТ/год + денежный эквивалент)</div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {[
+                { label: "Время написания 1 БТ с AI-агентом", value: "52 ч.ч./1 БТ (без ИИ) × (1 − 0,25 оптимизации ИИ по рабочим процессам) = 52 ч.ч./1 БТ × 0,75 =", result: "39 ч.ч./1 БТ (с AI-агентом)" },
+                { label: "Себестоимость 1 БТ с AI-агентом", value: "39 ч.ч./1 БТ × 718 ₽/ч. (себестоим. 1 раб. часа) =", result: "28 031 ₽" },
+                { label: "Автоматизация ч.ч. на 1 БТ с ИИ-агентом", value: "52 ч.ч. − 39 ч.ч. =", result: "на 13 ч.ч. быстрее пишется БТ" },
+                { label: "Количество автоматизированного времени в год на написание БТ", value: "812 БТ/год (сейчас) × 13 ч.ч. автоматизации/1 БТ =", result: "10 556 ч.ч. сможет быть автоматизировано" },
+                { label: "Потенциальное кол-во прироста написанных БТ в год", value: "10 556 ч.ч. ÷ 39 ч.ч./1 БТ (с ИИ) =", result: "271 БТ в год (прирост написанных БТ за год с учетом автоматизации рабочих процессов)" },
+              ].map((item, i) => (
+                <div key={i} style={{ padding: "12px 16px", background: "#fff", borderRadius: 8, border: "1px solid #dde3f5", fontSize: "0.88rem", lineHeight: 1.7 }}>
+                  <div style={{ fontWeight: 700, color: "#0056b3", marginBottom: 4 }}>{item.label}</div>
+                  <div style={{ color: "#444" }}>{item.value} <span style={{ fontWeight: 700, color: "#1b5e20" }}>{item.result}</span></div>
+                </div>
+              ))}
             </div>
           </div>
         )}
