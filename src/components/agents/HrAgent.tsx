@@ -314,9 +314,9 @@ const HrAgent = () => {
         <>
           <div style={s.card}>
             <div style={s.statsGrid}>
-              <div style={s.statBox}><span style={s.statValue}>34 484</span><span style={s.statLabel}>Человеко-часов без ИИ<br />(в год на 50 сотрудников HR СГ)</span></div>
-              <div style={s.statBox}><span style={s.statValue}>23 172</span><span style={s.statLabel}>Человеко-часов с ИИ<br />(в год на 50 сотрудников HR СГ)</span></div>
-              <div style={s.statBoxGreen}><span style={s.statValueGreen}>11 312</span><span style={s.statLabel}>Экономия ч.ч. в год<br />(-32,8%)</span></div>
+              <div style={s.statBox}><span style={s.statValue}>27 284</span><span style={s.statLabel}>Человеко-часов без ИИ<br />(в год на 50 сотрудников HR СГ)</span></div>
+              <div style={s.statBox}><span style={s.statValue}>16 692</span><span style={s.statLabel}>Человеко-часов с ИИ<br />(в год на 50 сотрудников HR СГ)</span></div>
+              <div style={s.statBoxGreen}><span style={s.statValueGreen}>7 712</span><span style={s.statLabel}>Экономия ч.ч. в год</span></div>
             </div>
           </div>
           <div style={s.card}>
@@ -327,17 +327,16 @@ const HrAgent = () => {
               </div>
               <div style={{ ...s.statBoxGreen, textAlign: "left" }}>
                 <span style={{ fontSize: "1.1rem", fontWeight: 700, color: "#1b5e20", display: "block", marginBottom: 8 }}>Экономия в год</span>
-                <span style={{ fontSize: "2rem", fontWeight: 700, color: "#1b5e20" }}>8 484 000 ₽</span>
-                <span style={{ fontSize: "0.85rem", color: "#2e7d32" }}>Экономия в год</span>
+                <span style={{ fontSize: "2rem", fontWeight: 700, color: "#1b5e20" }}>5 784 000 ₽</span>
               </div>
             </div>
           </div>
           <div style={{ background: "linear-gradient(135deg, #0056b3, #007bff)", color: "#fff", padding: 28, borderRadius: 14, marginBottom: 16, boxShadow: "0 6px 24px rgba(0,86,179,0.2)" }}>
             <div style={{ fontSize: "1.3rem", fontWeight: 700, marginBottom: 16, textAlign: "center" }}>Общая годовая оптимизация</div>
             <div style={{ fontSize: "1.1rem", lineHeight: 1.8, maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
-              <p>ИИ-агент «Помощник HR» сократил трудозатраты на <span style={{ background: "rgba(255,255,255,0.2)", padding: "2px 8px", borderRadius: 6, fontWeight: 600 }}>32,8%</span> за счёт автоматизации рутинных задач.</p>
-              <p style={{ marginTop: 10 }}><b>Расчёт:</b> 34 484 ч.ч. – 23 172 ч.ч. = <b>11 312 ч.ч.</b> экономии в год.</p>
-              <p style={{ marginTop: 10 }}>Экономия: <b>8 484 000 руб.</b> — это <b>8,5 млн руб.</b> в год.</p>
+              <p>ИИ-агент «Помощник HR» сократил трудозатраты на <span style={{ background: "rgba(255,255,255,0.2)", padding: "2px 8px", borderRadius: 6, fontWeight: 600 }}>28,3%</span> за счёт автоматизации рутинных задач.</p>
+              <p style={{ marginTop: 10 }}><b>Расчёт:</b> 27 284 ч.ч. (без ИИ) – 16 692 ч.ч. (с ИИ) = <b>7 712 ч.ч.</b> экономии в год.</p>
+              <p style={{ marginTop: 10 }}>Экономия: <b>5 784 000 руб.</b> — это <b>5,8 млн руб.</b> в год.</p>
             </div>
           </div>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 8 }}>
