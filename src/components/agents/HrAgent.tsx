@@ -10,14 +10,14 @@ const hrTableData = [
   { id: 3,  name: "Вопросы для подготовки к собеседованию",                wDay:"2,88",    wMon:"57,6",      wYear:"720",         aiDay:"2,59",   aiMon:"51,8",     aiYear:"648",       saveH:"72",         saveR:"54 000" },
   { id: 4,  name: "Анализ видеозаписи собеседования",                      wDay:"11,52",   wMon:"230,4",     wYear:"2 880",       aiDay:"10,37",  aiMon:"207,4",    aiYear:"2 592",     saveH:"288",        saveR:"216 000" },
   { id: 5,  name: "Тестовое задание",                                      wDay:"5,76",    wMon:"115,2",     wYear:"1 440",       aiDay:"5,18",   aiMon:"103,7",    aiYear:"1 296",     saveH:"144",        saveR:"108 000" },
-  { id: 6,  name: "Проверка тестового задания",                            wDay:"5,76",    wMon:"115,2",     wYear:"1 440",       aiDay:"5,18",   aiMon:"103,7",    aiYear:"1 296",     saveH:"144",        saveR:"108 000" },
+  { id: 6,  name: "Проверка тестового задания",                            wDay:"2,88",    wMon:"57,6",      wYear:"720",         aiDay:"2,59",   aiMon:"51,8",     aiYear:"648",       saveH:"72",         saveR:"54 000" },
   { id: 7,  name: "Отработка возражений кандидатов",                       wDay:"2,88",    wMon:"57,6",      wYear:"720",         aiDay:"2,59",   aiMon:"51,8",     aiYear:"648",       saveH:"72",         saveR:"54 000" },
   { id: 8,  name: "Подготовка обратной связи",                             wDay:"2,88",    wMon:"57,6",      wYear:"720",         aiDay:"2,59",   aiMon:"51,8",     aiYear:"648",       saveH:"72",         saveR:"54 000" },
   { id: 9,  name: "Помощь в написании вакансии",                           wDay:"5,76",    wMon:"115,2",     wYear:"1 440",       aiDay:"5,18",   aiMon:"103,7",    aiYear:"1 296",     saveH:"144",        saveR:"108 000" },
-  { id: 10, name: "Оффер СКБСЖ (2 р/нед)",                                wDay:"0,384",   wMon:"7,68",      wYear:"96",          aiDay:"0,346",  aiMon:"6,91",     aiYear:"86,4",      saveH:"9,6",        saveR:"7 200" },
-  { id: 11, name: "Оффер СКБС (2 р/нед)",                                 wDay:"0,384",   wMon:"7,68",      wYear:"96",          aiDay:"0,346",  aiMon:"6,91",     aiYear:"86,4",      saveH:"9,6",        saveR:"7 200" },
-  { id: 12, name: "Оффер НПФ (2 р/нед)",                                  wDay:"0,384",   wMon:"7,68",      wYear:"96",          aiDay:"0,346",  aiMon:"6,91",     aiYear:"86,4",      saveH:"9,6",        saveR:"7 200" },
-  { id: 13, name: "Внесение изменений в Штатное Расписание (2 р/нед)",     wDay:"0,96",    wMon:"19,2",      wYear:"240",         aiDay:"0,864",  aiMon:"17,28",    aiYear:"216",       saveH:"24",         saveR:"18 000" },
+  { id: 10, name: "Оффер СКБСЖ (2 р/нед)",                                wDay:"0,192",   wMon:"3,84",      wYear:"48",          aiDay:"0,173",  aiMon:"3,455",    aiYear:"43,2",      saveH:"4,8",        saveR:"3 600" },
+  { id: 11, name: "Оффер СКБС (2 р/нед)",                                 wDay:"0,192",   wMon:"3,84",      wYear:"48",          aiDay:"0,173",  aiMon:"3,455",    aiYear:"43,2",      saveH:"4,8",        saveR:"3 600" },
+  { id: 12, name: "Оффер НПФ (2 р/нед)",                                  wDay:"0,192",   wMon:"3,84",      wYear:"48",          aiDay:"0,173",  aiMon:"3,455",    aiYear:"43,2",      saveH:"4,8",        saveR:"3 600" },
+  { id: 13, name: "Внесение изменений в Штатное Расписание (2 р/нед)",     wDay:"0,48",    wMon:"9,6",       wYear:"120",         aiDay:"0,432",  aiMon:"8,64",     aiYear:"108",       saveH:"12",         saveR:"9 000" },
   { id: 14, name: "Анализ задачи на подбор",                               wDay:"8,64",    wMon:"172,8",     wYear:"2 160",       aiDay:"7,78",   aiMon:"155,5",    aiYear:"1 944",     saveH:"216",        saveR:"162 000" },
   { id: 15, name: "Правила экологичного перевода (2 р/нед)",               wDay:"0,384",   wMon:"7,68",      wYear:"96",          aiDay:"0,346",  aiMon:"6,91",     aiYear:"86,4",      saveH:"9,6",        saveR:"7 200" },
   { id: 16, name: "Положение о подборе персонала (2 р/нед)",               wDay:"0,384",   wMon:"7,68",      wYear:"96",          aiDay:"0,346",  aiMon:"6,91",     aiYear:"86,4",      saveH:"9,6",        saveR:"7 200" },
@@ -386,12 +386,12 @@ const HrAgent = () => {
                   <td style={s.tdTotal} colSpan={2}>ИТОГО Всего</td>
                   <td style={s.tdTotal}>137,92</td>
                   <td style={s.tdTotal}>2 758,4</td>
-                  <td style={s.tdTotal}>34 484</td>
+                  <td style={s.tdTotal}>27 284</td>
                   <td style={s.tdTotal}>92,77</td>
                   <td style={s.tdTotal}>1 855,4</td>
-                  <td style={s.tdTotal}>23 172</td>
-                  <td style={s.tdTotal}>11 312</td>
-                  <td style={s.tdTotal}>8 484 000 ₽</td>
+                  <td style={s.tdTotal}>16 692</td>
+                  <td style={s.tdTotal}>7 712</td>
+                  <td style={s.tdTotal}>5 784 000 ₽</td>
                 </tr>
               </tbody>
             </table>
