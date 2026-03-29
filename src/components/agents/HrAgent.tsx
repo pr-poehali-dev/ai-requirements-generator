@@ -383,14 +383,14 @@ const HrAgent = () => {
                 ))}
                 <tr>
                   <td style={s.tdTotal} colSpan={2}>ИТОГО Всего</td>
-                  <td style={s.tdTotal}>137,92</td>
-                  <td style={s.tdTotal}>2 758,40</td>
+                  <td style={s.tdTotal}>113,62</td>
+                  <td style={s.tdTotal}>2 272,40</td>
                   <td style={s.tdTotal}>27 268</td>
-                  <td style={s.tdTotal}>92,77</td>
-                  <td style={s.tdTotal}>1 855,40</td>
-                  <td style={s.tdTotal}>16 676</td>
+                  <td style={s.tdTotal}>81,57</td>
+                  <td style={s.tdTotal}>1 631,40</td>
+                  <td style={s.tdTotal}>19 576</td>
                   <td style={s.tdTotal}>7 692</td>
-                  <td style={s.tdTotal}>5 766 000 ₽</td>
+                  <td style={s.tdTotal}>5 769 000 ₽</td>
                 </tr>
               </tbody>
             </table>
