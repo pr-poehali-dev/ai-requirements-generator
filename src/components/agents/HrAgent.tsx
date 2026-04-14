@@ -1,7 +1,7 @@
 import { useState } from "react";
 import s from "@/pages/agentStyles";
 
-type HrTabId = "overview" | "table" | "pilot2026" | "methodology";
+type HrTabId = "overview" | "table" | "pilot2026" | "newcomers" | "methodology";
 type HrModalId = "methodology" | "formulas" | "sources" | null;
 
 const hrTableData = [
@@ -434,6 +434,253 @@ const Pilot2026Tab = () => {
   );
 };
 
+// ===== ТАБЛИЦА: 4 рекрутера-новичка =====
+// Базис: 4 чел., 750 ₽/ч, 240 раб. дней/год, 20 раб. дней/квартал (Q1)
+// Время взято из аналогичных процессов модели HR (на 50 чел.) масштабировано на 4
+// % оптимизации: адаптация/ответы — 15%, анализ — 12%, документы/коммуникации — 10%
+const newcomerData = [
+  {
+    id: 1,
+    category: "Рассуждения",
+    name: "Ответы на открытые вопросы + помощь в адаптации",
+    note: "ИИ заменяет наставника по базовым HR-вопросам, ускоряет онбординг",
+    wYear: 384,   // 4 чел × 8 ч/нед × 12 нед/кв × 4 кв — оценка на типовую адаптацию
+    pct: 15,
+  },
+  {
+    id: 2,
+    category: "Аналитика",
+    name: "Анализ резюме",
+    note: "Шаблоны ИИ ускоряют первичный скрининг у неопытного рекрутера",
+    wYear: 1321,  // 4/50 от 16 512,75 ч.ч. (рекрутеры) = ~1 321
+    pct: 12,
+  },
+  {
+    id: 3,
+    category: "Аналитика",
+    name: "Анализ записи собеседования (по транскрибации)",
+    note: "Транскрибация + AI-резюме снижает время просмотра записи",
+    wYear: 58,    // 4/50 × 720 ч.ч. ≈ 58
+    pct: 12,
+  },
+  {
+    id: 4,
+    category: "Документы",
+    name: "Тестовое задание",
+    note: "Генерация тестового задания под вакансию",
+    wYear: 115,   // 4/50 × 1 440 ≈ 115
+    pct: 10,
+  },
+  {
+    id: 5,
+    category: "Аналитика",
+    name: "Проверка тестового задания",
+    note: "ИИ помогает сформировать критерии оценки и шаблон проверки",
+    wYear: 58,
+    pct: 10,
+  },
+  {
+    id: 6,
+    category: "Коммуникация",
+    name: "Отработка возражений кандидатов",
+    note: "Быстрые ответы и скрипты снижают время на подготовку",
+    wYear: 58,
+    pct: 10,
+  },
+  {
+    id: 7,
+    category: "Коммуникация",
+    name: "Подготовка обратной связи",
+    note: "Шаблоны ОС сокращают время написания фидбека кандидату",
+    wYear: 58,
+    pct: 10,
+  },
+  {
+    id: 8,
+    category: "Документы",
+    name: "Написание вакансии (тренды рынка)",
+    note: "Промпт по трендам рынка — актуальный текст с первого раза",
+    wYear: 115,   // 4/50 × 1 440 ≈ 115
+    pct: 10,
+  },
+  {
+    id: 9,
+    category: "Документы",
+    name: "Внесение изменений в Штатное Расписание СГ",
+    note: "Шаблон заполнения снижает ошибки новичка",
+    wYear: 10,    // 4/50 × 120 ≈ 10
+    pct: 10,
+  },
+  {
+    id: 10,
+    category: "Анализ",
+    name: "Анализ задачи на подбор (почему вакансия не закрывается)",
+    note: "ИИ подсвечивает проблемы в описании и условиях вакансии",
+    wYear: 173,   // 4/50 × 2 160 ≈ 173
+    pct: 12,
+  },
+  {
+    id: 11,
+    category: "Документы",
+    name: "Правила экологичного перевода внутри группы",
+    note: "Быстрый доступ к регламенту через ИИ без поиска по папкам",
+    wYear: 8,     // 4/50 × 96 ≈ 8
+    pct: 10,
+  },
+  {
+    id: 12,
+    category: "Документы",
+    name: "Положение о подборе персонала Совкомбанк Страхование",
+    note: "Быстрые ответы по регламенту без обращения к руководителю",
+    wYear: 8,
+    pct: 10,
+  },
+];
+
+const NewcomersTab = () => {
+  const RATE = 750;
+  const nTh: React.CSSProperties = { background: "#004d40", color: "#fff", padding: "9px 8px", fontSize: "0.77rem", fontWeight: 700, whiteSpace: "nowrap", textAlign: "center" };
+  const nTd: React.CSSProperties = { padding: "7px 8px", fontSize: "0.79rem", color: "#1a237e", borderBottom: "1px solid #e0f2f1", textAlign: "center" };
+  const nTdL: React.CSSProperties = { ...nTd, textAlign: "left", minWidth: 170 };
+  const nTdNote: React.CSSProperties = { ...nTd, textAlign: "left", color: "#546e7a", fontStyle: "italic", fontSize: "0.74rem", minWidth: 200 };
+  const nTot: React.CSSProperties = { padding: "8px 8px", fontSize: "0.81rem", fontWeight: 700, color: "#004d40", background: "#b2dfdb", borderTop: "2px solid #004d40", textAlign: "center" };
+  const nTotL: React.CSSProperties = { ...nTot, textAlign: "left" };
+  const headN: React.CSSProperties = { fontSize: "0.72rem", fontWeight: 400, color: "#80cbc4", display: "block", marginTop: 2 };
+
+  const rows = newcomerData.map(r => {
+    const aiYear = r.wYear * (1 - r.pct / 100);
+    const saveHYear = r.wYear - aiYear;
+    const saveRYear = saveHYear * RATE;
+    const saveHQ1 = saveHYear / 4;
+    const saveRQ1 = saveRYear / 4;
+    return { ...r, aiYear, saveHYear, saveRYear, saveHQ1, saveRQ1 };
+  });
+
+  const totW   = rows.reduce((s, r) => s + r.wYear, 0);
+  const totAi  = rows.reduce((s, r) => s + r.aiYear, 0);
+  const totSHY = rows.reduce((s, r) => s + r.saveHYear, 0);
+  const totSRY = rows.reduce((s, r) => s + r.saveRYear, 0);
+  const totSHQ = totSHY / 4;
+  const totSRQ = totSRY / 4;
+
+  const fmt2 = (n: number) => n.toLocaleString("ru-RU", { maximumFractionDigits: 1 });
+  const fmtR2 = (n: number) => n.toLocaleString("ru-RU", { maximumFractionDigits: 0 });
+
+  const catColor: Record<string, string> = {
+    "Рассуждения": "#e8f5e9",
+    "Аналитика": "#e3f2fd",
+    "Документы": "#fff8e1",
+    "Коммуникация": "#fce4ec",
+    "Анализ": "#f3e5f5",
+  };
+
+  return (
+    <>
+      {/* шапка */}
+      <div style={{ background: "linear-gradient(135deg, #004d40, #00796b)", color: "#fff", borderRadius: 12, padding: "18px 20px", marginBottom: 18 }}>
+        <div style={{ fontSize: "1.1rem", fontWeight: 700, marginBottom: 6 }}>ИИ-агент как ассистент для рекрутеров-новичков</div>
+        <div style={{ fontSize: "0.85rem", opacity: 0.9, lineHeight: 1.7 }}>
+          4 пользователя · 12 процессов · ставка 750 ₽/ч · оптимизация 10–15%<br />
+          Эффект: ускорение адаптации, быстрые ответы по регламентам, шаблоны для типовых задач
+        </div>
+      </div>
+
+      {/* итоговые карточки */}
+      <div style={{ display: "flex", gap: 12, marginBottom: 18, flexWrap: "wrap" }}>
+        <div style={{ flex: "1 1 160px", background: "#e0f2f1", borderRadius: 10, padding: "14px 16px" }}>
+          <div style={{ fontSize: "0.75rem", color: "#555", marginBottom: 4 }}>Экономия ч.ч. — I квартал 2026</div>
+          <div style={{ fontSize: "1.7rem", fontWeight: 700, color: "#004d40" }}>{fmt2(totSHQ)} ч.ч.</div>
+        </div>
+        <div style={{ flex: "1 1 160px", background: "#e8f5e9", borderRadius: 10, padding: "14px 16px" }}>
+          <div style={{ fontSize: "0.75rem", color: "#555", marginBottom: 4 }}>Экономия ₽ — I квартал 2026</div>
+          <div style={{ fontSize: "1.7rem", fontWeight: 700, color: "#1b5e20" }}>{fmtR2(totSRQ)} ₽</div>
+        </div>
+        <div style={{ flex: "1 1 160px", background: "#b2dfdb", borderRadius: 10, padding: "14px 16px" }}>
+          <div style={{ fontSize: "0.75rem", color: "#555", marginBottom: 4 }}>Перспектива ч.ч. — год</div>
+          <div style={{ fontSize: "1.7rem", fontWeight: 700, color: "#004d40" }}>{fmt2(totSHY)} ч.ч.</div>
+        </div>
+        <div style={{ flex: "1 1 160px", background: "#c8e6c9", borderRadius: 10, padding: "14px 16px" }}>
+          <div style={{ fontSize: "0.75rem", color: "#555", marginBottom: 4 }}>Перспектива ₽ — год</div>
+          <div style={{ fontSize: "1.7rem", fontWeight: 700, color: "#1b5e20" }}>{fmtR2(totSRY)} ₽</div>
+        </div>
+      </div>
+
+      {/* таблица */}
+      <div style={{ background: "#fff", borderRadius: 12, padding: "16px", boxShadow: "0 2px 12px rgba(0,0,0,0.07)" }}>
+        <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "#004d40", marginBottom: 12 }}>
+          Детализация по 12 процессам · 4 рекрутера-новичка
+        </div>
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.79rem" }}>
+            <thead>
+              <tr>
+                <th style={{ ...nTh, textAlign: "center" }}>№</th>
+                <th style={{ ...nTh, textAlign: "left" }}>Категория</th>
+                <th style={{ ...nTh, textAlign: "left" }}>Процесс</th>
+                <th style={nTh}>Ч.Ч. без ИИ<span style={headN}>(год, 4 чел.)</span></th>
+                <th style={nTh}>% опт.</th>
+                <th style={nTh}>Ч.Ч. с ИИ<span style={headN}>(год)</span></th>
+                <th style={{ ...nTh, background: "#00695c" }}>Экономия ч.ч.<span style={headN}>Q1 / год</span></th>
+                <th style={{ ...nTh, background: "#1b5e20" }}>Экономия ₽<span style={headN}>Q1 / год</span></th>
+                <th style={{ ...nTh, textAlign: "left", background: "#37474f" }}>Эффект для новичка</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, i) => (
+                <tr key={row.id} style={{ background: catColor[row.category] ?? (i % 2 === 0 ? "#f9fafb" : "#fff") }}>
+                  <td style={nTd}>{row.id}</td>
+                  <td style={{ ...nTdL, fontSize: "0.74rem", color: "#546e7a" }}>{row.category}</td>
+                  <td style={nTdL}>{row.name}</td>
+                  <td style={nTd}>{fmt2(row.wYear)}</td>
+                  <td style={{ ...nTd, fontWeight: 700, color: "#00695c" }}>{row.pct}%</td>
+                  <td style={nTd}>{fmt2(row.aiYear)}</td>
+                  <td style={{ ...nTd, fontWeight: 700, color: "#00695c" }}>
+                    {fmt2(row.saveHQ1)} / {fmt2(row.saveHYear)}
+                  </td>
+                  <td style={{ ...nTd, fontWeight: 700, color: "#1b5e20" }}>
+                    {fmtR2(row.saveRQ1)} / {fmtR2(row.saveRYear)} ₽
+                  </td>
+                  <td style={nTdNote}>{row.note}</td>
+                </tr>
+              ))}
+              <tr>
+                <td style={nTot} colSpan={2}></td>
+                <td style={nTotL}>ИТОГО</td>
+                <td style={nTot}>{fmt2(totW)}</td>
+                <td style={nTot}>—</td>
+                <td style={nTot}>{fmt2(totAi)}</td>
+                <td style={{ ...nTot, color: "#004d40", background: "#80cbc4" }}>
+                  {fmt2(totSHQ)} / {fmt2(totSHY)} ч.ч.
+                </td>
+                <td style={{ ...nTot, color: "#1b5e20", background: "#a5d6a7" }}>
+                  {fmtR2(totSRQ)} / {fmtR2(totSRY)} ₽
+                </td>
+                <td style={{ ...nTot, background: "#cfd8dc" }}></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* легенда */}
+        <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 8 }}>
+          {Object.entries(catColor).map(([cat, bg]) => (
+            <span key={cat} style={{ background: bg, border: "1px solid #ccc", borderRadius: 6, padding: "3px 10px", fontSize: "0.74rem", color: "#333" }}>
+              {cat}
+            </span>
+          ))}
+          <span style={{ fontSize: "0.74rem", color: "#78909c", alignSelf: "center", marginLeft: 4 }}>— цветовое кодирование категорий</span>
+        </div>
+
+        {/* формула */}
+        <div style={{ marginTop: 14, background: "#e0f7fa", borderRadius: 8, padding: "10px 14px", fontSize: "0.8rem", color: "#006064", lineHeight: 1.8 }}>
+          <b>Формула:</b> Ч.Ч. без ИИ (год) × % оптимизации = Экономия ч.ч./год → × 750 ₽/ч = Экономия ₽/год → ÷ 4 = I квартал<br />
+          <b>Базис:</b> 4 сотрудника · 240 раб. дней/год · время взято пропорционально модели 50 HR СГ (коэф. 4/50)
+        </div>
+      </div>
+    </>
+  );
+};
+
 const calcTh: React.CSSProperties = { background: "#1a237e", color: "#fff", padding: "8px 10px", fontSize: "0.8rem", fontWeight: 700, whiteSpace: "nowrap" };
 const calcTd: React.CSSProperties = { padding: "7px 10px", fontSize: "0.82rem", color: "#1a237e", borderBottom: "1px solid #e3e8f0" };
 const calcTdNote: React.CSSProperties = { ...calcTd, color: "#555", fontStyle: "italic" };
@@ -485,6 +732,7 @@ const HrAgent = () => {
     { id: "overview", label: "Обзор" },
     { id: "table", label: "Детализация" },
     { id: "pilot2026", label: "Пилот 2026 (17 чел.)" },
+    { id: "newcomers", label: "Новички (4 рекрутера)" },
     { id: "methodology", label: "Методология" },
   ];
 
@@ -583,6 +831,8 @@ const HrAgent = () => {
       )}
 
       {tab === "pilot2026" && <Pilot2026Tab />}
+
+      {tab === "newcomers" && <NewcomersTab />}
 
       {tab === "methodology" && (
         <>
