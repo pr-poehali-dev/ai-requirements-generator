@@ -1,7 +1,7 @@
 import { useState } from "react";
 import s from "@/pages/agentStyles";
 
-type HrTabId = "overview" | "table" | "methodology";
+type HrTabId = "overview" | "table" | "pilot2026" | "methodology";
 type HrModalId = "methodology" | "formulas" | "sources" | null;
 
 const hrTableData = [
@@ -251,6 +251,189 @@ const totalCalcRows = [
   ["Экономия (руб.) в год", "5 769 000", "руб. в год", "7 692 × 750 = 5 769 000 руб."],
 ];
 
+// Данные для таблиц пилота 2026 (17 сотрудников = 34% от 50)
+const PILOT_RATIO = 17 / 50; // 0.34
+
+const pilot2026Data = [
+  { id: 1,  name: "Анализ резюме (руководители)",                      wYear: 1692.25,  aiYear: 362.63,  saveH: 1329.62, saveR: 997219 },
+  { id: 2,  name: "Анализ резюме (рекрутеры)",                         wYear: 16512.75, aiYear: 7508.78, saveH: 9003.97, saveR: 6752978 },
+  { id: 3,  name: "Вопросы для подготовки к собеседованию",            wYear: 720,      aiYear: 648,     saveH: 72,      saveR: 54000 },
+  { id: 4,  name: "Анализ видеозаписи собеседования",                  wYear: 720,      aiYear: 648,     saveH: 72,      saveR: 54000 },
+  { id: 5,  name: "Тестовое задание",                                  wYear: 1440,     aiYear: 1296,    saveH: 144,     saveR: 108000 },
+  { id: 6,  name: "Проверка тестового задания",                        wYear: 720,      aiYear: 648,     saveH: 72,      saveR: 54000 },
+  { id: 7,  name: "Отработка возражений кандидатов",                   wYear: 720,      aiYear: 648,     saveH: 72,      saveR: 54000 },
+  { id: 8,  name: "Подготовка обратной связи",                         wYear: 720,      aiYear: 648,     saveH: 72,      saveR: 54000 },
+  { id: 9,  name: "Помощь в написании вакансии",                       wYear: 1440,     aiYear: 1296,    saveH: 144,     saveR: 108000 },
+  { id: 10, name: "Оффер СКБСЖ (2 р/нед)",                            wYear: 48,       aiYear: 43.2,    saveH: 4.8,     saveR: 3600 },
+  { id: 11, name: "Оффер СКБС (2 р/нед)",                             wYear: 48,       aiYear: 43.2,    saveH: 4.8,     saveR: 3600 },
+  { id: 12, name: "Оффер НПФ (2 р/нед)",                              wYear: 16,       aiYear: 14.4,    saveH: 1.6,     saveR: 1200 },
+  { id: 13, name: "Внесение изменений в Штатное Расписание (2 р/нед)", wYear: 120,      aiYear: 108,     saveH: 12,      saveR: 9000 },
+  { id: 14, name: "Анализ задачи на подбор",                           wYear: 2160,     aiYear: 1944,    saveH: 216,     saveR: 162000 },
+  { id: 15, name: "Правила экологичного перевода (2 р/нед)",           wYear: 96,       aiYear: 86.4,    saveH: 9.6,     saveR: 7200 },
+  { id: 16, name: "Положение о подборе персонала (2 р/нед)",           wYear: 96,       aiYear: 86.4,    saveH: 9.6,     saveR: 7200 },
+];
+
+const fmt = (n: number) => n.toLocaleString("ru-RU", { maximumFractionDigits: 1 });
+const fmtR = (n: number) => n.toLocaleString("ru-RU", { maximumFractionDigits: 0 });
+
+const Pilot2026Tab = () => {
+  const pTh: React.CSSProperties = { background: "#0d3b66", color: "#fff", padding: "9px 8px", fontSize: "0.78rem", fontWeight: 700, whiteSpace: "nowrap", textAlign: "center" };
+  const pTd: React.CSSProperties = { padding: "7px 8px", fontSize: "0.8rem", color: "#1a237e", borderBottom: "1px solid #e3e8f0", textAlign: "center" };
+  const pTdName: React.CSSProperties = { ...pTd, textAlign: "left", minWidth: 180 };
+  const pTot: React.CSSProperties = { padding: "8px 8px", fontSize: "0.82rem", fontWeight: 700, color: "#0d3b66", background: "#dde8f8", borderTop: "2px solid #0d3b66", textAlign: "center" };
+  const pTotName: React.CSSProperties = { ...pTot, textAlign: "left" };
+
+  const totW17year  = pilot2026Data.reduce((s,r) => s + r.wYear  * PILOT_RATIO, 0);
+  const totAi17year = pilot2026Data.reduce((s,r) => s + r.aiYear * PILOT_RATIO, 0);
+  const totSH17year = pilot2026Data.reduce((s,r) => s + r.saveH  * PILOT_RATIO, 0);
+  const totSR17year = pilot2026Data.reduce((s,r) => s + r.saveR  * PILOT_RATIO, 0);
+
+  const totW17q1  = totW17year  / 4;
+  const totAi17q1 = totAi17year / 4;
+  const totSH17q1 = totSH17year / 4;
+  const totSR17q1 = totSR17year / 4;
+
+  const headNote: React.CSSProperties = { fontSize: "0.78rem", fontWeight: 400, color: "#90caf9", display: "block", marginTop: 2 };
+
+  return (
+    <>
+      {/* ===== ТАБЛИЦА 1: ГОД 2026 ===== */}
+      <div style={{ background: "#fff", borderRadius: 12, padding: "20px 16px 16px", marginBottom: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+        <div style={{ fontWeight: 700, fontSize: "1.05rem", color: "#0d3b66", marginBottom: 4 }}>
+          Таблица 1 — Экономия за 2026 год
+        </div>
+        <div style={{ fontSize: "0.82rem", color: "#607d8b", marginBottom: 14 }}>
+          17 сотрудников-пользователей ИИ-агента HR · 526 активных чатов/мес · ставка 750 ₽/ч · коэффициент пилота 17/50 = 34% от полного штата
+        </div>
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8rem" }}>
+            <thead>
+              <tr>
+                <th style={{ ...pTh, textAlign: "left" }}>№</th>
+                <th style={{ ...pTh, textAlign: "left" }}>Процесс</th>
+                <th style={pTh}>Ч.Ч. без ИИ<span style={headNote}>(год, 17 чел.)</span></th>
+                <th style={pTh}>Ч.Ч. с ИИ<span style={headNote}>(год, 17 чел.)</span></th>
+                <th style={{ ...pTh, background: "#1565c0" }}>Экономия ч.ч.<span style={headNote}>(год)</span></th>
+                <th style={{ ...pTh, background: "#1b5e20" }}>Экономия ₽<span style={headNote}>(год)</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              {pilot2026Data.map((row, i) => {
+                const wY  = row.wYear  * PILOT_RATIO;
+                const aiY = row.aiYear * PILOT_RATIO;
+                const sH  = row.saveH  * PILOT_RATIO;
+                const sR  = row.saveR  * PILOT_RATIO;
+                return (
+                  <tr key={row.id} style={{ background: i % 2 === 0 ? "#f5f7fb" : "#fff" }}>
+                    <td style={pTd}>{row.id}</td>
+                    <td style={pTdName}>{row.name}</td>
+                    <td style={pTd}>{fmt(wY)}</td>
+                    <td style={pTd}>{fmt(aiY)}</td>
+                    <td style={{ ...pTd, fontWeight: 700, color: "#1565c0" }}>{fmt(sH)}</td>
+                    <td style={{ ...pTd, fontWeight: 700, color: "#1b5e20" }}>{fmtR(sR)} ₽</td>
+                  </tr>
+                );
+              })}
+              <tr>
+                <td style={pTot}></td>
+                <td style={pTotName}>ИТОГО</td>
+                <td style={pTot}>{fmt(totW17year)}</td>
+                <td style={pTot}>{fmt(totAi17year)}</td>
+                <td style={{ ...pTot, color: "#1565c0", background: "#d0e4ff" }}>{fmt(totSH17year)} ч.ч.</td>
+                <td style={{ ...pTot, color: "#1b5e20", background: "#c8e6c9" }}>{fmtR(totSR17year)} ₽</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style={{ display: "flex", gap: 12, marginTop: 16, flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 180px", background: "#e8f0fe", borderRadius: 8, padding: "12px 16px" }}>
+            <div style={{ fontSize: "0.78rem", color: "#555", marginBottom: 4 }}>Ч.Ч. экономии за год</div>
+            <div style={{ fontSize: "1.6rem", fontWeight: 700, color: "#1565c0" }}>{fmt(totSH17year)} ч.ч.</div>
+          </div>
+          <div style={{ flex: "1 1 180px", background: "#e8f5e9", borderRadius: 8, padding: "12px 16px" }}>
+            <div style={{ fontSize: "0.78rem", color: "#555", marginBottom: 4 }}>Рублёвая экономия за год</div>
+            <div style={{ fontSize: "1.6rem", fontWeight: 700, color: "#1b5e20" }}>{fmtR(totSR17year).replace(/\s/g, "\u00A0")} ₽</div>
+          </div>
+          <div style={{ flex: "1 1 220px", background: "#fff3e0", borderRadius: 8, padding: "12px 16px" }}>
+            <div style={{ fontSize: "0.78rem", color: "#555", marginBottom: 4 }}>Формула расчёта</div>
+            <div style={{ fontSize: "0.82rem", color: "#e65100", lineHeight: 1.6 }}>
+              7 692 ч.ч. (на 50 чел.) × 34% = {fmt(totSH17year)} ч.ч.<br />
+              5 769 000 ₽ (на 50 чел.) × 34% = {fmtR(totSR17year)} ₽
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ===== ТАБЛИЦА 2: Q1 2026 ===== */}
+      <div style={{ background: "#fff", borderRadius: 12, padding: "20px 16px 16px", boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+        <div style={{ fontWeight: 700, fontSize: "1.05rem", color: "#4a148c", marginBottom: 4 }}>
+          Таблица 2 — Экономия за I квартал 2026 года (январь–март)
+        </div>
+        <div style={{ fontSize: "0.82rem", color: "#607d8b", marginBottom: 14 }}>
+          17 сотрудников · Q1 = 1/4 годовой экономии · ставка 750 ₽/ч
+        </div>
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8rem" }}>
+            <thead>
+              <tr>
+                <th style={{ ...pTh, textAlign: "left", background: "#4a148c" }}>№</th>
+                <th style={{ ...pTh, textAlign: "left", background: "#4a148c" }}>Процесс</th>
+                <th style={{ ...pTh, background: "#4a148c" }}>Ч.Ч. без ИИ<span style={headNote}>(Q1, 17 чел.)</span></th>
+                <th style={{ ...pTh, background: "#4a148c" }}>Ч.Ч. с ИИ<span style={headNote}>(Q1, 17 чел.)</span></th>
+                <th style={{ ...pTh, background: "#1565c0" }}>Экономия ч.ч.<span style={headNote}>(Q1)</span></th>
+                <th style={{ ...pTh, background: "#1b5e20" }}>Экономия ₽<span style={headNote}>(Q1)</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              {pilot2026Data.map((row, i) => {
+                const wQ  = row.wYear  * PILOT_RATIO / 4;
+                const aiQ = row.aiYear * PILOT_RATIO / 4;
+                const sH  = row.saveH  * PILOT_RATIO / 4;
+                const sR  = row.saveR  * PILOT_RATIO / 4;
+                return (
+                  <tr key={row.id} style={{ background: i % 2 === 0 ? "#faf5ff" : "#fff" }}>
+                    <td style={pTd}>{row.id}</td>
+                    <td style={pTdName}>{row.name}</td>
+                    <td style={pTd}>{fmt(wQ)}</td>
+                    <td style={pTd}>{fmt(aiQ)}</td>
+                    <td style={{ ...pTd, fontWeight: 700, color: "#1565c0" }}>{fmt(sH)}</td>
+                    <td style={{ ...pTd, fontWeight: 700, color: "#1b5e20" }}>{fmtR(sR)} ₽</td>
+                  </tr>
+                );
+              })}
+              <tr>
+                <td style={{ ...pTot, background: "#e8d5ff" }}></td>
+                <td style={{ ...pTotName, background: "#e8d5ff", color: "#4a148c" }}>ИТОГО</td>
+                <td style={{ ...pTot, background: "#e8d5ff", color: "#4a148c" }}>{fmt(totW17q1)}</td>
+                <td style={{ ...pTot, background: "#e8d5ff", color: "#4a148c" }}>{fmt(totAi17q1)}</td>
+                <td style={{ ...pTot, color: "#1565c0", background: "#d0e4ff" }}>{fmt(totSH17q1)} ч.ч.</td>
+                <td style={{ ...pTot, color: "#1b5e20", background: "#c8e6c9" }}>{fmtR(totSR17q1)} ₽</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style={{ display: "flex", gap: 12, marginTop: 16, flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 180px", background: "#ede7f6", borderRadius: 8, padding: "12px 16px" }}>
+            <div style={{ fontSize: "0.78rem", color: "#555", marginBottom: 4 }}>Ч.Ч. экономии за I квартал</div>
+            <div style={{ fontSize: "1.6rem", fontWeight: 700, color: "#4a148c" }}>{fmt(totSH17q1)} ч.ч.</div>
+          </div>
+          <div style={{ flex: "1 1 180px", background: "#e8f5e9", borderRadius: 8, padding: "12px 16px" }}>
+            <div style={{ fontSize: "0.78rem", color: "#555", marginBottom: 4 }}>Рублёвая экономия за I квартал</div>
+            <div style={{ fontSize: "1.6rem", fontWeight: 700, color: "#1b5e20" }}>{fmtR(totSR17q1).replace(/\s/g, "\u00A0")} ₽</div>
+          </div>
+          <div style={{ flex: "1 1 220px", background: "#fff3e0", borderRadius: 8, padding: "12px 16px" }}>
+            <div style={{ fontSize: "0.78rem", color: "#555", marginBottom: 4 }}>Формула расчёта</div>
+            <div style={{ fontSize: "0.82rem", color: "#e65100", lineHeight: 1.6 }}>
+              {fmt(totSH17year)} ч.ч. (год) ÷ 4 кварталов = {fmt(totSH17q1)} ч.ч.<br />
+              {fmtR(totSR17year)} ₽ (год) ÷ 4 = {fmtR(totSR17q1)} ₽
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 const calcTh: React.CSSProperties = { background: "#1a237e", color: "#fff", padding: "8px 10px", fontSize: "0.8rem", fontWeight: 700, whiteSpace: "nowrap" };
 const calcTd: React.CSSProperties = { padding: "7px 10px", fontSize: "0.82rem", color: "#1a237e", borderBottom: "1px solid #e3e8f0" };
 const calcTdNote: React.CSSProperties = { ...calcTd, color: "#555", fontStyle: "italic" };
@@ -301,6 +484,7 @@ const HrAgent = () => {
   const tabs: { id: HrTabId; label: string }[] = [
     { id: "overview", label: "Обзор" },
     { id: "table", label: "Детализация" },
+    { id: "pilot2026", label: "Пилот 2026 (17 чел.)" },
     { id: "methodology", label: "Методология" },
   ];
 
@@ -397,6 +581,8 @@ const HrAgent = () => {
           </div>
         </div>
       )}
+
+      {tab === "pilot2026" && <Pilot2026Tab />}
 
       {tab === "methodology" && (
         <>
